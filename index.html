@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Prompt Style Generator</title>
+<style>
+:root{color-scheme:dark;--bg:#120d22;--bg2:#071b2d;--text:#fff7ff;--muted:#cabbe9;--accent:#8be9fd;--pink:#ff79c6;--border:rgba(255,255,255,.18)}*{box-sizing:border-box}body{margin:0;min-height:100svh;display:grid;place-items:center;padding:24px;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);background:radial-gradient(circle at 15% 0%,rgba(255,121,198,.35),transparent 30%),radial-gradient(circle at 85% 0%,rgba(139,233,253,.25),transparent 35%),linear-gradient(135deg,var(--bg),var(--bg2))}.card{width:min(680px,100%);padding:28px;border:1px solid var(--border);border-radius:26px;background:rgba(255,255,255,.1);box-shadow:0 24px 80px rgba(0,0,0,.35);backdrop-filter:blur(14px)}h1{margin:0 0 8px;font-size:clamp(2rem,8vw,4rem);line-height:.95;letter-spacing:-.08em}p{color:var(--muted);line-height:1.55}.status{font-weight:900;color:var(--accent)}button,a.button{display:inline-flex;align-items:center;justify-content:center;min-height:46px;border:1px solid var(--border);border-radius:999px;padding:0 18px;color:#190d2b;background:var(--accent);font:inherit;font-weight:950;text-decoration:none;cursor:pointer}.row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}.warn{color:#ffd166}</style>
+</head>
+<body>
+<main class="card">
+<h1>Prompt Style Generator</h1>
+<p class="status" id="status">Loading the generator…</p>
+<p>This Pages wrapper pulls in the current generator file from the original repo path, so this new repo gets the clean URL while the existing working copy stays intact.</p>
+<p class="warn" id="fallback" hidden>If loading is blocked, use the fallback link below.</p>
+<div class="row">
+<a class="button" href="https://nimravini.github.io/character-counter/style-combo-generator/">Open fallback page</a>
+<button id="retry" type="button">Retry</button>
+</div>
+</main>
+<script>
+const SOURCE='https://raw.githubusercontent.com/nimravini/character-counter/main/style-combo-generator/index.html';
+async function loadGenerator(){
+  const status=document.getElementById('status');
+  const fallback=document.getElementById('fallback');
+  try{
+    const response=await fetch(SOURCE,{cache:'no-store'});
+    if(!response.ok) throw new Error('HTTP '+response.status);
+    const html=await response.text();
+    document.open();
+    document.write(html);
+    document.close();
+  }catch(error){
+    status.textContent='Could not load the generator from GitHub raw content.';
+    fallback.hidden=false;
+    console.error(error);
+  }
+}
+document.getElementById('retry').addEventListener('click',loadGenerator);
+loadGenerator();
+</script>
+</body>
+</html>
