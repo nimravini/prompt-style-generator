@@ -1,0 +1,37 @@
+{
+  "name": "Style Combo Generator",
+  "short_name": "Style Combo",
+  "description": "A pocket style-direction chimera lab for rolling prompt style mashups.",
+  "id": "./pwa.html",
+  "start_url": "./pwa.html",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "orientation": "portrait",
+  "background_color": "#070612",
+  "theme_color": "#ff4fd8",
+  "categories": ["design", "productivity", "utilities"],
+  "icons": [
+    {
+      "src": "./icons/style-combo-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Open Generator",
+      "short_name": "Generator",
+      "description": "Open the Style Combo Generator.",
+      "url": "./pwa.html",
+      "icons": [
+        {
+          "src": "./icons/style-combo-icon.svg",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ]
+}
