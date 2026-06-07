@@ -169,7 +169,7 @@
         };
 
         ANTI_GREEBLE_MODES.abstract = {
-          label: "Abstract Cleanup",
+          label: "Abstract Guardrails",
           suffix: "Use rich colour, layered texture, expressive detail, clean lighting, and controlled complexity. Preserve abstract movement and atmosphere without muddy shapes, cluttered contrast, or accidental figurative subjects."
         };
 
@@ -183,8 +183,8 @@
           else select.appendChild(option);
         }
 
-        function abstractModeActive() {
-          return modeSelect.value === ABSTRACT_MODE_NAME;
+        function abstractGuardrailsActive() {
+          return modeSelect.value === ABSTRACT_MODE_NAME || antiGreebleSelect.value === "abstract";
         }
 
         function abstractDesignPriorities() {
@@ -207,7 +207,7 @@
 
         const originalBuildPrompt = buildPrompt;
         buildPrompt = function(formatName = copyFormatSelect.value) {
-          if (!abstractModeActive()) return originalBuildPrompt(formatName);
+          if (!abstractGuardrailsActive()) return originalBuildPrompt(formatName);
 
           const combo = buildComboText();
           const anti = ANTI_GREEBLE_MODES[antiGreebleSelect.value] || ANTI_GREEBLE_MODES.off;
@@ -277,7 +277,7 @@
         };
 
         ensureOption(modeSelect, ABSTRACT_MODE_NAME, ABSTRACT_MODE_NAME, "Flat Colour / Low-Greeble");
-        ensureOption(antiGreebleSelect, "abstract", "Abstract Cleanup", "lushControlled");
+        ensureOption(antiGreebleSelect, "abstract", "Abstract Guardrails", "lushControlled");
         updateCount();
         updateBadge();
         refreshCopyPreview();
