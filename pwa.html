@@ -137,12 +137,13 @@
       <button id="installButton" class="install-button" type="button" hidden>Install app</button>
     </section>
 
-    <iframe src="./index.html" title="Style Combo Generator" allow="clipboard-write"></iframe>
+    <iframe id="generatorFrame" src="./index.html" title="Style Combo Generator" allow="clipboard-write"></iframe>
   </main>
 
   <script>
     const installButton = document.getElementById("installButton");
     const installStatus = document.getElementById("installStatus");
+    const generatorFrame = document.getElementById("generatorFrame");
     let deferredInstallPrompt = null;
 
     if ("serviceWorker" in navigator) {
@@ -152,6 +153,156 @@
         });
       });
     }
+
+    const abstractModePatch = String.raw`
+      (() => {
+        if (window.__styleComboAbstractModeInstalled) return;
+        window.__styleComboAbstractModeInstalled = true;
+
+        const ABSTRACT_MODE_NAME = "Abstract / Non-Figurative";
+        const abstractPattern = /Abstract|Kandinsky|Klint|Suprematist|Fractal|Op Art|Plotter|Inkblot|Rorschach|Glitch|Datamosh|Psychedelia|Surreal|Dreamcore|Dada|De Stijl|Neo-Memphis|Brutalist|Generative|Geometric|Cubist|Futurist|Expressionist|Mixed Media|Ink Drip|Light Painting|Bokeh|Motion|Thermographic|Heatmap|Cosmic|Mandala|Papercut|Risograph|Mosaic|Stained Glass|Vaporwave|Cyberdelic|Acrylic|Oil Pastel|Minimalist Flat/i;
+        const abstractStyles = STYLES.filter(style => abstractPattern.test(style));
+
+        MODES[ABSTRACT_MODE_NAME] = {
+          type: "manual",
+          styles: abstractStyles.length ? abstractStyles : STYLES
+        };
+
+        ANTI_GREEBLE_MODES.abstract = {
+          label: "Abstract Cleanup",
+          suffix: "Use rich colour, layered texture, expressive detail, clean lighting, and controlled complexity. Preserve abstract movement and atmosphere without muddy shapes, cluttered contrast, or accidental figurative subjects."
+        };
+
+        function ensureOption(select, value, label, afterValue = null) {
+          if ([...select.options].some(option => option.value === value)) return;
+          const option = document.createElement("option");
+          option.value = value;
+          option.textContent = label;
+          const after = afterValue ? [...select.options].find(existing => existing.value === afterValue) : null;
+          if (after && after.nextSibling) select.insertBefore(option, after.nextSibling);
+          else select.appendChild(option);
+        }
+
+        function abstractModeActive() {
+          return modeSelect.value === ABSTRACT_MODE_NAME;
+        }
+
+        function abstractDesignPriorities() {
+          return [
+            "Design priorities:",
+            "Strong overall composition, balanced visual rhythm, intentional colour relationships, coherent spatial flow, and a consistent finish. Allow abstraction, ambiguity, and non-literal forms while keeping the image visually resolved.",
+            "",
+            "Abstract guardrails:",
+            "Avoid forcing a literal subject, character, face, object, readable symbol, text, or single central focal point unless explicitly requested."
+          ].join("\n");
+        }
+
+        const originalCompactCleanupText = compactCleanupText;
+        compactCleanupText = function() {
+          if (antiGreebleSelect.value === "abstract") {
+            return "rich colour, layered texture, expressive detail, clean lighting, controlled complexity, no accidental figurative subjects";
+          }
+          return originalCompactCleanupText();
+        };
+
+        const originalBuildPrompt = buildPrompt;
+        buildPrompt = function(formatName = copyFormatSelect.value) {
+          if (!abstractModeActive()) return originalBuildPrompt(formatName);
+
+          const combo = buildComboText();
+          const anti = ANTI_GREEBLE_MODES[antiGreebleSelect.value] || ANTI_GREEBLE_MODES.off;
+          const suffix = anti.suffix.trim();
+          const compact = compactCleanupText();
+          const stacked = styleLines();
+
+          if (!combo) return "";
+          if (formatName === "plain") return combo;
+          if (formatName === "stacked") return stacked;
+          if (formatName === "clean") {
+            return [
+              "Create an abstract, non-figurative image combining these visual styles:",
+              combo + ".",
+              "Focus on composition, rhythm, colour, texture, atmosphere, and spatial flow rather than a literal subject.",
+              suffix
+            ].filter(Boolean).join(" ");
+          }
+          if (formatName === "chatgpt") {
+            return [
+              "Create an abstract, non-figurative image using a hybrid visual style that combines:",
+              combo + ".",
+              "Prioritise composition, colour relationships, visual rhythm, spatial flow, and atmosphere. Avoid forcing a literal subject, character, face, object, readable symbol, or single central focal point unless the user asks for one.",
+              suffix
+            ].filter(Boolean).join(" ");
+          }
+          if (formatName === "short") return [combo, compact || "abstract composition, visual rhythm, colour flow"].filter(Boolean).join(", ");
+          if (formatName === "brief") {
+            const lines = [
+              "Visual direction:",
+              stacked,
+              "",
+              abstractDesignPriorities()
+            ];
+            if (suffix) lines.push("", "Cleanup:", suffix);
+            return lines.join("\n");
+          }
+          if (formatName === "structured") {
+            return [
+              "Anchor / idea: [optional, leave blank for pure abstraction]",
+              "",
+              "Style blend:",
+              stacked,
+              "",
+              "Format: [write aspect ratio, composition, or output type here]",
+              "",
+              "Mood / palette: [optional]",
+              "",
+              abstractDesignPriorities(),
+              "",
+              "Cleanup:",
+              suffix || "[add any constraints you want here]"
+            ].join("\n");
+          }
+          if (formatName === "midjourney") {
+            return combo + ", abstract non-figurative composition, visual rhythm, colour flow, coherent spatial movement" + (compact ? ", " + compact : "");
+          }
+          return combo;
+        };
+
+        const originalModeChange = modeSelect.onchange;
+        modeSelect.onchange = event => {
+          if (modeSelect.value === ABSTRACT_MODE_NAME && antiGreebleSelect.value === "off") antiGreebleSelect.value = "abstract";
+          if (originalModeChange) originalModeChange.call(modeSelect, event);
+          updateBadge();
+          refreshCopyPreview();
+        };
+
+        ensureOption(modeSelect, ABSTRACT_MODE_NAME, ABSTRACT_MODE_NAME, "Flat Colour / Low-Greeble");
+        ensureOption(antiGreebleSelect, "abstract", "Abstract Cleanup", "lushControlled");
+        updateCount();
+        updateBadge();
+        refreshCopyPreview();
+        renderSearchResults();
+      })();
+    `;
+
+    function installAbstractModePatch() {
+      const frameWindow = generatorFrame.contentWindow;
+      const frameDocument = generatorFrame.contentDocument;
+      if (!frameWindow || !frameDocument || frameWindow.__styleComboAbstractModeInstalled) return;
+
+      const script = frameDocument.createElement("script");
+      script.textContent = abstractModePatch;
+      frameDocument.body.appendChild(script);
+      script.remove();
+    }
+
+    generatorFrame.addEventListener("load", () => {
+      try {
+        installAbstractModePatch();
+      } catch (error) {
+        installStatus.textContent = "Abstract mode patch failed to load. Reload the app shell and try again.";
+      }
+    });
 
     window.addEventListener("beforeinstallprompt", event => {
       event.preventDefault();
