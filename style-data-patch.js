@@ -3,52 +3,52 @@
   window.__styleComboDataPatchInstalled = true;
 
   const STYLE_UPDATES = [
-    { title: "Gothic Victorian", text: "Gothic Victorian Dark, ornate historical style", aliases: ["Gothic"] },
-    { title: "Whimsical Miniature Diorama", text: "Whimsical Miniature Diorama Tiny world built with detail" },
-    { title: "Macabre Victorian Mourning Portrait", text: "Macabre Victorian Mourning Portrait Creepy antique vibe", aliases: ["Macabre Mourning Portrait"] },
-    { title: "Solarpunk Botanical City Style", text: "Solarpunk Botanical City Style Green architecture, sunlight, community tech, abundant plant life" },
-    { title: "Medieval Marginalia Creature Style", text: "Medieval Marginalia Creature Style Odd little manuscript beasts doing ridiculous border activities" },
-    { title: "Early Renaissance Panel Style", text: "Early Renaissance Panel Style Tempera clarity, balanced perspective, calm architectural staging" },
-    { title: "Baroque Chiaroscuro Drama", text: "Baroque Chiaroscuro Drama Theatrical light, deep shadows, sweeping drapery, opulent intensity" },
-    { title: "Rococo Pastel Ornament Style", text: "Rococo Pastel Ornament Style Airy shell curves, gilded flourishes, soft luxury and playful elegance" },
-    { title: "Neoclassical Marble Heroic Style", text: "Neoclassical Marble Heroic Style Balanced antique composition, sculptural figures, columns and cool restraint" },
-    { title: "Romantic Sublime Landscape", text: "Romantic Sublime Landscape Stormy ruins, moonlight, wild nature and brooding emotional scale" },
-    { title: "Post-Impressionist Decorative Painting", text: "Post-Impressionist Decorative Painting Bold contour, expressive colour, structured brushwork and patterned forms" },
-    { title: "Symbolist Dream Allegory", text: "Symbolist Dream Allegory Mystical figures, moons, masks and decadent dreamlike symbolism" },
-    { title: "Fauvist Colour Painting", text: "Fauvist Colour Painting Wild saturation, bold contours and non-natural expressive colour" },
-    { title: "Abstract Expressionist Gesture Painting", text: "Abstract Expressionist Gesture Painting Splashes, drips and raw gestural brush energy" },
-    { title: "Arts and Crafts Pattern Style", text: "Arts and Crafts Pattern Style Handcrafted floral repeats, natural ornament and warm material honesty" },
-    { title: "Zoological Natural History Plate", text: "Zoological Natural History Plate Detailed animal studies with labels, specimen poses and scientific precision" },
-    { title: "Clinical Medical Diagram Style", text: "Clinical Medical Diagram Style Clean anatomical or biological diagramming with labels and instructional clarity" },
-    { title: "Editorial Spot Illustration", text: "Editorial Spot Illustration Conceptual magazine-style metaphor images with clean silhouettes" },
-    { title: "Superhero Comic Splash Page", text: "Superhero Comic Splash Page Dynamic foreshortening, dramatic inks, speed lines and punch lighting" },
-    { title: "Underground Comix Style", text: "Underground Comix Style Heavy ink, counterculture cartooning, grotesque satire and rough print attitude" },
-    { title: "Shōjo Manga Romance Style", text: "Shōjo Manga Romance Style Sparkles, floral overlays, airy hair, soft framing and emotive eyes" },
-    { title: "Manga Horror Ink Style", text: "Manga Horror Ink Style Dense blacks, unsettling line detail and claustrophobic eerie framing" },
-    { title: "Anime Cel Animation Style", text: "Anime Cel Animation Style Clean contour, flat shadow bands, painted backgrounds and cel-like colour" },
-    { title: "Limited TV Animation Style", text: "Limited TV Animation Style Held poses, simplified movement, bold flat shapes and clever staging" },
-    { title: "Impasto Oil Paint Style", text: "Impasto Oil Paint Style Thick ridged paint, palette-knife texture and raised painterly surface" },
-    { title: "Fresco Mural Painting", text: "Fresco Mural Painting Matte plaster wall texture, monumental composition and weathered pigments" },
-    { title: "Egg Tempera Panel Style", text: "Egg Tempera Panel Style Crisp detail, matte pigment and delicate luminous panel-paint finish" },
-    { title: "Airbrush Gradient Poster Style", text: "Airbrush Gradient Poster Style Soft sprayed gradients, velvety transitions and retro shine" },
-    { title: "Pictorialist Soft-Focus Photography", text: "Pictorialist Soft-Focus Photography Hazy tonal prints, poetic blur and painterly photographic atmosphere" },
-    { title: "Straight Photography Style", text: "Straight Photography Style Sharp focus, rigorous composition and clean observational realism" },
-    { title: "Documentary Photography Style", text: "Documentary Photography Style Candid lived-in realism, available light and social texture" },
-    { title: "New Vision Modernist Photography", text: "New Vision Modernist Photography Radical angles, close crops, shadows and machine-age geometry" },
-    { title: "High-Fashion Photography Editorial", text: "High-Fashion Photography Editorial Polished lighting, poses, styling and magazine drama" },
-    { title: "Italian Neorealist Film Look", text: "Italian Neorealist Film Look Street-location realism, natural light and anti-glamour human texture" },
-    { title: "Technicolor Cinema Look", text: "Technicolor Cinema Look Saturated classic-studio colour, glossy drama and storybook brightness" },
-    { title: "Giallo Horror Lighting", text: "Giallo Horror Lighting Lurid red-blue shadows, stylish thriller framing and theatrical dread" },
-    { title: "Pattachitra Folk Painting", text: "Pattachitra Folk Painting Flat mythic figures, decorative borders and narrative scroll-like detail" },
-    { title: "Kalighat Painting Style", text: "Kalighat Painting Style Sweeping brush contours, simplified figures and folk-market immediacy" },
-    { title: "Madhubani Painting Style", text: "Madhubani Painting Style Dense pattern fills, double outlines, folk symbols and vivid flat colour" },
-    { title: "Kantha Embroidery Surface", text: "Kantha Embroidery Surface Running-stitch texture, quilted cloth and handmade narrative threadwork" },
-    { title: "Batik Wax-Resist Textile", text: "Batik Wax-Resist Textile Crackled dye patterns, layered cloth colour and organic resist edges" },
-    { title: "Mid-Century Modern Interior Illustration", text: "Mid-Century Modern Interior Illustration Teak furniture, warm geometry, organic curves and clean domestic design" },
-    { title: "Low-Poly 3D Style", text: "Low-Poly 3D Style Faceted polygons, simplified geometry and stylised game-ready shapes" },
-    { title: "Cel-Shaded Toon Render", text: "Cel-Shaded Toon Render 3D forms with flat shadow bands, crisp outlines and comic/game clarity" },
-    { title: "Corporate Memphis Vector Illustration", text: "Corporate Memphis Vector Illustration Flat pastel people, bendy limbs, friendly abstract office shapes" },
-    { title: "Nostalgic Browser Pet Game Sprite Style", text: "Nostalgic Browser Pet Game Sprite Style Clean vector-style 2D fantasy-creature sprite art with crisp bold uniform linework, cel-shading, flat vibrant colour, and soft ambient-occlusion shading." }
+    { title: "Gothic Victorian", text: "Gothic Victorian – Dark, ornate historical style", aliases: ["Gothic"] },
+    { title: "Whimsical Miniature Diorama", text: "Whimsical Miniature Diorama – Tiny world built with detail" },
+    { title: "Macabre Victorian Mourning Portrait", text: "Macabre Victorian Mourning Portrait – Creepy antique vibe", aliases: ["Macabre Mourning Portrait"] },
+    { title: "Solarpunk Botanical City Style", text: "Solarpunk Botanical City Style – Green architecture, sunlight, community tech, abundant plant life" },
+    { title: "Medieval Marginalia Creature Style", text: "Medieval Marginalia Creature Style – Odd little manuscript beasts doing ridiculous border activities" },
+    { title: "Early Renaissance Panel Style", text: "Early Renaissance Panel Style – Tempera clarity, balanced perspective, calm architectural staging" },
+    { title: "Baroque Chiaroscuro Drama", text: "Baroque Chiaroscuro Drama – Theatrical light, deep shadows, sweeping drapery, opulent intensity" },
+    { title: "Rococo Pastel Ornament Style", text: "Rococo Pastel Ornament Style – Airy shell curves, gilded flourishes, soft luxury and playful elegance" },
+    { title: "Neoclassical Marble Heroic Style", text: "Neoclassical Marble Heroic Style – Balanced antique composition, sculptural figures, columns and cool restraint" },
+    { title: "Romantic Sublime Landscape", text: "Romantic Sublime Landscape – Stormy ruins, moonlight, wild nature and brooding emotional scale" },
+    { title: "Post-Impressionist Decorative Painting", text: "Post-Impressionist Decorative Painting – Bold contour, expressive colour, structured brushwork and patterned forms" },
+    { title: "Symbolist Dream Allegory", text: "Symbolist Dream Allegory – Mystical figures, moons, masks and decadent dreamlike symbolism" },
+    { title: "Fauvist Colour Painting", text: "Fauvist Colour Painting – Wild saturation, bold contours and non-natural expressive colour" },
+    { title: "Abstract Expressionist Gesture Painting", text: "Abstract Expressionist Gesture Painting – Splashes, drips and raw gestural brush energy" },
+    { title: "Arts and Crafts Pattern Style", text: "Arts and Crafts Pattern Style – Handcrafted floral repeats, natural ornament and warm material honesty" },
+    { title: "Zoological Natural History Plate", text: "Zoological Natural History Plate – Detailed animal studies with labels, specimen poses and scientific precision" },
+    { title: "Clinical Medical Diagram Style", text: "Clinical Medical Diagram Style – Clean anatomical or biological diagramming with labels and instructional clarity" },
+    { title: "Editorial Spot Illustration", text: "Editorial Spot Illustration – Conceptual magazine-style metaphor images with clean silhouettes" },
+    { title: "Superhero Comic Splash Page", text: "Superhero Comic Splash Page – Dynamic foreshortening, dramatic inks, speed lines and punch lighting" },
+    { title: "Underground Comix Style", text: "Underground Comix Style – Heavy ink, counterculture cartooning, grotesque satire and rough print attitude" },
+    { title: "Shōjo Manga Romance Style", text: "Shōjo Manga Romance Style – Sparkles, floral overlays, airy hair, soft framing and emotive eyes" },
+    { title: "Manga Horror Ink Style", text: "Manga Horror Ink Style – Dense blacks, unsettling line detail and claustrophobic eerie framing" },
+    { title: "Anime Cel Animation Style", text: "Anime Cel Animation Style – Clean contour, flat shadow bands, painted backgrounds and cel-like colour" },
+    { title: "Limited TV Animation Style", text: "Limited TV Animation Style – Held poses, simplified movement, bold flat shapes and clever staging" },
+    { title: "Impasto Oil Paint Style", text: "Impasto Oil Paint Style – Thick ridged paint, palette-knife texture and raised painterly surface" },
+    { title: "Fresco Mural Painting", text: "Fresco Mural Painting – Matte plaster wall texture, monumental composition and weathered pigments" },
+    { title: "Egg Tempera Panel Style", text: "Egg Tempera Panel Style – Crisp detail, matte pigment and delicate luminous panel-paint finish" },
+    { title: "Airbrush Gradient Poster Style", text: "Airbrush Gradient Poster Style – Soft sprayed gradients, velvety transitions and retro shine" },
+    { title: "Pictorialist Soft-Focus Photography", text: "Pictorialist Soft-Focus Photography – Hazy tonal prints, poetic blur and painterly photographic atmosphere" },
+    { title: "Straight Photography Style", text: "Straight Photography Style – Sharp focus, rigorous composition and clean observational realism" },
+    { title: "Documentary Photography Style", text: "Documentary Photography Style – Candid lived-in realism, available light and social texture" },
+    { title: "New Vision Modernist Photography", text: "New Vision Modernist Photography – Radical angles, close crops, shadows and machine-age geometry" },
+    { title: "High-Fashion Photography Editorial", text: "High-Fashion Photography Editorial – Polished lighting, poses, styling and magazine drama" },
+    { title: "Italian Neorealist Film Look", text: "Italian Neorealist Film Look – Street-location realism, natural light and anti-glamour human texture" },
+    { title: "Technicolor Cinema Look", text: "Technicolor Cinema Look – Saturated classic-studio colour, glossy drama and storybook brightness" },
+    { title: "Giallo Horror Lighting", text: "Giallo Horror Lighting – Lurid red-blue shadows, stylish thriller framing and theatrical dread" },
+    { title: "Pattachitra Folk Painting", text: "Pattachitra Folk Painting – Flat mythic figures, decorative borders and narrative scroll-like detail" },
+    { title: "Kalighat Painting Style", text: "Kalighat Painting Style – Sweeping brush contours, simplified figures and folk-market immediacy" },
+    { title: "Madhubani Painting Style", text: "Madhubani Painting Style – Dense pattern fills, double outlines, folk symbols and vivid flat colour" },
+    { title: "Kantha Embroidery Surface", text: "Kantha Embroidery Surface – Running-stitch texture, quilted cloth and handmade narrative threadwork" },
+    { title: "Batik Wax-Resist Textile", text: "Batik Wax-Resist Textile – Crackled dye patterns, layered cloth colour and organic resist edges" },
+    { title: "Mid-Century Modern Interior Illustration", text: "Mid-Century Modern Interior Illustration – Teak furniture, warm geometry, organic curves and clean domestic design" },
+    { title: "Low-Poly 3D Style", text: "Low-Poly 3D Style – Faceted polygons, simplified geometry and stylised game-ready shapes" },
+    { title: "Cel-Shaded Toon Render", text: "Cel-Shaded Toon Render – 3D forms with flat shadow bands, crisp outlines and comic/game clarity" },
+    { title: "Corporate Memphis Vector Illustration", text: "Corporate Memphis Vector Illustration – Flat pastel people, bendy limbs, friendly abstract office shapes" },
+    { title: "Nostalgic Browser Pet Game Sprite Style", text: "Nostalgic Browser Pet Game Sprite Style – Clean vector-style 2D fantasy-creature sprite art with crisp bold uniform linework, cel-shading, flat vibrant colour, and soft ambient-occlusion shading." }
   ];
 
   const normaliseForMatch = value => value.toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/[“”]/g, '"').replace(/[^a-z0-9]+/g, " ").trim();
@@ -76,6 +76,59 @@
       seenStyles.add(key);
     }
   }
+
+  const explicitTitleOverrides = [
+    ...STYLE_UPDATES.map(update => update.title),
+    "Album Art Psychedelia (1970s)",
+    "Album Cover (Indie Rock Aesthetic)",
+    "Art Brut / Outsider Art Vibe",
+    "Comic Book Style (Generic)",
+    "Fantasy Book Cover (90s style)",
+    "Folk Art Primitive",
+    "Inkblot Rorschach Abstract",
+    "Light and Shadow Realism",
+    "Manga Cover (Generic, Safe Style)",
+    "Pastel Illustration (Soft, Whimsical)"
+  ].sort((a, b) => b.length - a.length);
+
+  const noSeparatorTitles = new Set([
+    "Pastel Art Nouveau cartoon",
+    "Windows Aero Glass Aesthetic"
+  ]);
+
+  const titleEndTerms = [
+    "Flash Sheet", "Film Look", "Cinema Look", "Game Style", "Book Cover", "Puzzle Page",
+    "Art", "Aesthetic", "Animation", "Avatar", "Broadside", "Card", "Chart", "Collage", "Cover", "Design", "Diagram", "Drawing", "Editorial", "Emblem", "Illustration", "Landscape", "Layout", "Lighting", "Look", "Map", "Montage", "Mural", "Page", "Painting", "Photography", "Pictogram", "Plate", "Poster", "Print", "Profile", "Realism", "Render", "Rendering", "Scene", "Sculpture", "Sheet", "Signage", "Sketch", "Snapshot", "Style", "Surface", "Textile", "Texture", "Vibe", "World"
+  ].sort((a, b) => b.length - a.length);
+
+  const escapeRegExp = value => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+  function addDescriptionSeparator(style) {
+    const cleaned = style.replace(/\s+/g, " ").trim();
+    if (!cleaned || cleaned.includes(" – ") || noSeparatorTitles.has(cleaned)) return cleaned;
+
+    const explicitTitle = explicitTitleOverrides.find(title => cleaned.startsWith(title + " "));
+    if (explicitTitle) return `${explicitTitle} – ${cleaned.slice(explicitTitle.length).trim()}`;
+
+    let splitAt = -1;
+    for (const term of titleEndTerms) {
+      const pattern = new RegExp(`\\b${escapeRegExp(term)}\\b(?: \\([^)]*\\))?`, "gi");
+      let match;
+      while ((match = pattern.exec(cleaned))) {
+        const candidateEnd = match.index + match[0].length;
+        if (candidateEnd < cleaned.length && candidateEnd > splitAt) splitAt = candidateEnd;
+      }
+    }
+
+    if (splitAt <= 0 || splitAt >= cleaned.length) return cleaned;
+
+    const title = cleaned.slice(0, splitAt).trim();
+    const description = cleaned.slice(splitAt).trim();
+    if (!title || !description) return cleaned;
+    return `${title} – ${description}`;
+  }
+
+  STYLES.splice(0, STYLES.length, ...STYLES.map(addDescriptionSeparator));
 
   function replaceArrayContents(target, source) {
     target.splice(0, target.length, ...uniquePool(source));
