@@ -162,8 +162,122 @@
     else select.appendChild(option);
   }
 
+  function installStyleDatabaseExport() {
+    if (document.getElementById("styleDatabaseExport")) return;
+
+    const styleElement = document.createElement("style");
+    styleElement.textContent = `
+      #styleDatabaseExport textarea {
+        width: 100%;
+        min-height: min(440px, 54svh);
+        resize: vertical;
+        padding: 13px;
+        border: 1px solid rgba(255, 255, 255, 0.24);
+        border-radius: 18px;
+        color: var(--text);
+        background: rgba(8, 7, 18, 0.58);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.09), 0 10px 26px rgba(0, 0, 0, 0.12);
+        line-height: 1.38;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+        font-size: 0.82rem;
+        white-space: pre;
+      }
+      #styleDatabaseExport .style-export-meta {
+        margin: 0 0 12px;
+        color: var(--muted);
+        line-height: 1.5;
+        text-wrap: pretty;
+      }
+      #styleDatabaseExport .style-export-status {
+        margin: 10px 0 0;
+        color: var(--muted-2);
+        min-height: 1.4em;
+        font-size: 0.86rem;
+      }
+    `;
+    document.head.appendChild(styleElement);
+
+    const details = document.createElement("details");
+    details.id = "styleDatabaseExport";
+
+    const summary = document.createElement("summary");
+    summary.textContent = "Style database export";
+    details.appendChild(summary);
+
+    const body = document.createElement("div");
+    body.className = "details-body";
+
+    const meta = document.createElement("p");
+    meta.className = "style-export-meta";
+    body.appendChild(meta);
+
+    const textarea = document.createElement("textarea");
+    textarea.id = "styleDatabaseExportText";
+    textarea.readOnly = true;
+    textarea.spellcheck = false;
+    textarea.setAttribute("aria-label", "Full style database export");
+    body.appendChild(textarea);
+
+    const buttons = document.createElement("div");
+    buttons.className = "button-row";
+    buttons.style.marginTop = "14px";
+    buttons.style.marginBottom = "0";
+
+    const copyButton = document.createElement("button");
+    copyButton.type = "button";
+    copyButton.className = "ghost";
+    copyButton.textContent = "Copy full style database";
+
+    const refreshButton = document.createElement("button");
+    refreshButton.type = "button";
+    refreshButton.className = "ghost";
+    refreshButton.textContent = "Refresh export";
+
+    buttons.append(copyButton, refreshButton);
+    body.appendChild(buttons);
+
+    const status = document.createElement("p");
+    status.className = "style-export-status";
+    body.appendChild(status);
+
+    details.appendChild(body);
+
+    const searchDetails = [...document.querySelectorAll("details")].find(section => section.querySelector("#styleSearch"));
+    if (searchDetails) searchDetails.after(details);
+    else document.querySelector(".tool")?.appendChild(details);
+
+    function updateExport() {
+      const exportText = STYLES.join("\n");
+      textarea.value = exportText;
+      meta.textContent = `${STYLES.length} active styles, one per line. This is the patched live database as the app sees it.`;
+      status.textContent = "Export refreshed.";
+      return exportText;
+    }
+
+    async function copyExport() {
+      const exportText = updateExport();
+      try {
+        await navigator.clipboard.writeText(exportText);
+        status.textContent = "Copied full style database.";
+      } catch (error) {
+        textarea.focus();
+        textarea.select();
+        document.execCommand("copy");
+        status.textContent = "Selected and copied where supported. If not, long-press the text box and copy manually.";
+      }
+    }
+
+    copyButton.addEventListener("click", copyExport);
+    refreshButton.addEventListener("click", updateExport);
+    details.addEventListener("toggle", () => {
+      if (details.open) updateExport();
+    });
+    updateExport();
+  }
+
   ensureOption(modeSelect, ABSTRACT_MODE_NAME, ABSTRACT_MODE_NAME, "Flat Colour / Low-Greeble");
   ensureOption(antiGreebleSelect, "abstract", "Abstract Guardrails", "lushControlled");
+  installStyleDatabaseExport();
   updateCount();
   updateBadge();
   refreshCopyPreview();
