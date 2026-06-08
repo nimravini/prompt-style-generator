@@ -159,6 +159,58 @@
         if (window.__styleComboAbstractModeInstalled) return;
         window.__styleComboAbstractModeInstalled = true;
 
+        const EXTRA_STYLES = [
+          "Early Renaissance Panel Style Tempera clarity, balanced perspective, calm architectural staging",
+          "Baroque Chiaroscuro Drama Theatrical light, deep shadows, sweeping drapery, opulent intensity",
+          "Rococo Pastel Ornament Style Airy shell curves, gilded flourishes, soft luxury and playful elegance",
+          "Neoclassical Marble Heroic Style Balanced antique composition, sculptural figures, columns and cool restraint",
+          "Romantic Sublime Landscape Stormy ruins, moonlight, wild nature and brooding emotional scale",
+          "Post-Impressionist Decorative Painting Bold contour, expressive colour, structured brushwork and patterned forms",
+          "Symbolist Dream Allegory Mystical figures, moons, masks and decadent dreamlike symbolism",
+          "Fauvist Colour Painting Wild saturation, bold contours and non-natural expressive colour",
+          "Abstract Expressionist Gesture Painting Splashes, drips and raw gestural brush energy",
+          "Arts and Crafts Pattern Style Handcrafted floral repeats, natural ornament and warm material honesty",
+          "Zoological Natural History Plate Detailed animal studies with labels, specimen poses and scientific precision",
+          "Clinical Medical Diagram Style Clean anatomical or biological diagramming with labels and instructional clarity",
+          "Editorial Spot Illustration Conceptual magazine-style metaphor images with clean silhouettes",
+          "Superhero Comic Splash Page Dynamic foreshortening, dramatic inks, speed lines and punch lighting",
+          "Underground Comix Style Heavy ink, counterculture cartooning, grotesque satire and rough print attitude",
+          "Shōjo Manga Romance Style Sparkles, floral overlays, airy hair, soft framing and emotive eyes",
+          "Manga Horror Ink Style Dense blacks, unsettling line detail and claustrophobic eerie framing",
+          "Anime Cel Animation Style Clean contour, flat shadow bands, painted backgrounds and cel-like colour",
+          "Limited TV Animation Style Held poses, simplified movement, bold flat shapes and clever staging",
+          "Impasto Oil Paint Style Thick ridged paint, palette-knife texture and raised painterly surface",
+          "Fresco Mural Painting Matte plaster wall texture, monumental composition and weathered pigments",
+          "Egg Tempera Panel Style Crisp detail, matte pigment and delicate luminous panel-paint finish",
+          "Airbrush Gradient Poster Style Soft sprayed gradients, velvety transitions and retro shine",
+          "Pictorialist Soft-Focus Photography Hazy tonal prints, poetic blur and painterly photographic atmosphere",
+          "Straight Photography Style Sharp focus, rigorous composition and clean observational realism",
+          "Documentary Photography Style Candid lived-in realism, available light and social texture",
+          "New Vision Modernist Photography Radical angles, close crops, shadows and machine-age geometry",
+          "High-Fashion Photography Editorial Polished lighting, poses, styling and magazine drama",
+          "Italian Neorealist Film Look Street-location realism, natural light and anti-glamour human texture",
+          "Technicolor Cinema Look Saturated classic-studio colour, glossy drama and storybook brightness",
+          "Giallo Horror Lighting Lurid red-blue shadows, stylish thriller framing and theatrical dread",
+          "Pattachitra Folk Painting Flat mythic figures, decorative borders and narrative scroll-like detail",
+          "Kalighat Painting Style Sweeping brush contours, simplified figures and folk-market immediacy",
+          "Madhubani Painting Style Dense pattern fills, double outlines, folk symbols and vivid flat colour",
+          "Kantha Embroidery Surface Running-stitch texture, quilted cloth and handmade narrative threadwork",
+          "Batik Wax-Resist Textile Crackled dye patterns, layered cloth colour and organic resist edges",
+          "Mid-Century Modern Interior Illustration Teak furniture, warm geometry, organic curves and clean domestic design",
+          "Low-Poly 3D Style Faceted polygons, simplified geometry and stylised game-ready shapes",
+          "Cel-Shaded Toon Render 3D forms with flat shadow bands, crisp outlines and comic/game clarity",
+          "Corporate Memphis Vector Illustration Flat pastel people, bendy limbs, friendly abstract office shapes"
+        ];
+
+        const existingStyles = new Set(STYLES.map(style => style.replace(/\s+/g, " ").trim()));
+        EXTRA_STYLES.forEach(style => {
+          if (!existingStyles.has(style)) STYLES.push(style);
+        });
+
+        MOONLIT_JEWELBOX_STYLES.push(...EXTRA_STYLES.filter(style => /Renaissance|Baroque|Rococo|Romantic|Symbolist|Moon|Tempera|Fresco|Egg Tempera|Pastel|Giallo|Painting|Ornament|Drama/i.test(style)));
+        BEAUTIFUL_STYLES.push(...EXTRA_STYLES.filter(style => /Renaissance|Baroque|Rococo|Romantic|Post-Impressionist|Symbolist|Fauvist|Arts and Crafts|Tempera|Fresco|Impasto|Pastel|Airbrush|Technicolor|Pattachitra|Kalighat|Madhubani|Kantha|Batik|Mid-Century|Cel-Shaded/i.test(style)));
+        FLAT_COLOUR_STYLES.push(...EXTRA_STYLES.filter(style => /Editorial|Comic|Manga|Anime|Limited TV|Diagram|Poster|Folk|Pattachitra|Kalighat|Madhubani|Mid-Century|Low-Poly|Cel-Shaded|Corporate Memphis|Vector|Flat/i.test(style)));
+
         const ABSTRACT_MODE_NAME = "Abstract / Non-Figurative";
         const abstractPattern = /Abstract|Kandinsky|Klint|Suprematist|Fractal|Op Art|Plotter|Inkblot|Rorschach|Glitch|Datamosh|Psychedelia|Surreal|Dreamcore|Dada|De Stijl|Neo-Memphis|Brutalist|Generative|Geometric|Cubist|Futurist|Expressionist|Mixed Media|Ink Drip|Light Painting|Bokeh|Motion|Thermographic|Heatmap|Cosmic|Mandala|Papercut|Risograph|Mosaic|Stained Glass|Vaporwave|Cyberdelic|Acrylic|Oil Pastel|Minimalist Flat/i;
         const abstractStyles = STYLES.filter(style => abstractPattern.test(style));
