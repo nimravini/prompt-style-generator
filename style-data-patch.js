@@ -2,145 +2,336 @@
   if (window.__styleComboDataPatchInstalled) return;
   window.__styleComboDataPatchInstalled = true;
 
-  const STYLE_UPDATES = [
-    { title: "Layered Mixed Media Brush Art", text: "Layered Mixed Media Brush Art – Paint, ink, texture all-in-one" },
-    { title: "Anita Jeram-inspired watercolour book illustration", text: "Anita Jeram-inspired Watercolour Book Illustration" },
-    { title: "Pastel Art Nouveau cartoon", text: "Pastel Art Nouveau Cartoon" },
-    { title: "Cubist Geometric figure art", text: "Cubist Geometric Figure Art" },
-    { title: "Steampunk Style", text: "Steampunk Style – Gear-heavy art" },
-    { title: "Chibi / Kawaii Style", text: "Chibi / Kawaii Style – Cute anime-inspired design" },
-    { title: "Mosaic Portrait Style", text: "Mosaic Portrait Style – Tiles form a large face" },
-    { title: "Gothic Victorian", text: "Gothic Victorian – Dark, ornate historical style", aliases: ["Gothic"] },
-    { title: "Whimsical Miniature Diorama", text: "Whimsical Miniature Diorama – Tiny world built with detail" },
-    { title: "Macabre Victorian Mourning Portrait", text: "Macabre Victorian Mourning Portrait – Creepy antique vibe", aliases: ["Macabre Mourning Portrait"] },
-    { title: "Solarpunk Botanical City Style", text: "Solarpunk Botanical City Style – Green architecture, sunlight, community tech, abundant plant life" },
-    { title: "Medieval Marginalia Creature Style", text: "Medieval Marginalia Creature Style – Odd little manuscript beasts doing ridiculous border activities" },
-    { title: "Early Renaissance Panel Style", text: "Early Renaissance Panel Style – Tempera clarity, balanced perspective, calm architectural staging" },
-    { title: "Baroque Chiaroscuro Drama", text: "Baroque Chiaroscuro Drama – Theatrical light, deep shadows, sweeping drapery, opulent intensity" },
-    { title: "Rococo Pastel Ornament Style", text: "Rococo Pastel Ornament Style – Airy shell curves, gilded flourishes, soft luxury and playful elegance" },
-    { title: "Neoclassical Marble Heroic Style", text: "Neoclassical Marble Heroic Style – Balanced antique composition, sculptural figures, columns and cool restraint" },
-    { title: "Romantic Sublime Landscape", text: "Romantic Sublime Landscape – Stormy ruins, moonlight, wild nature and brooding emotional scale" },
-    { title: "Post-Impressionist Decorative Painting", text: "Post-Impressionist Decorative Painting – Bold contour, expressive colour, structured brushwork and patterned forms" },
-    { title: "Symbolist Dream Allegory", text: "Symbolist Dream Allegory – Mystical figures, moons, masks and decadent dreamlike symbolism" },
-    { title: "Fauvist Colour Painting", text: "Fauvist Colour Painting – Wild saturation, bold contours and non-natural expressive colour" },
-    { title: "Abstract Expressionist Gesture Painting", text: "Abstract Expressionist Gesture Painting – Splashes, drips and raw gestural brush energy" },
-    { title: "Arts and Crafts Pattern Style", text: "Arts and Crafts Pattern Style – Handcrafted floral repeats, natural ornament and warm material honesty" },
-    { title: "Zoological Natural History Plate", text: "Zoological Natural History Plate – Detailed animal studies with labels, specimen poses and scientific precision" },
-    { title: "Clinical Medical Diagram Style", text: "Clinical Medical Diagram Style – Clean anatomical or biological diagramming with labels and instructional clarity" },
-    { title: "Editorial Spot Illustration", text: "Editorial Spot Illustration – Conceptual magazine-style metaphor images with clean silhouettes" },
-    { title: "Superhero Comic Splash Page", text: "Superhero Comic Splash Page – Dynamic foreshortening, dramatic inks, speed lines and punch lighting" },
-    { title: "Underground Comix Style", text: "Underground Comix Style – Heavy ink, counterculture cartooning, grotesque satire and rough print attitude" },
-    { title: "Shōjo Manga Romance Style", text: "Shōjo Manga Romance Style – Sparkles, floral overlays, airy hair, soft framing and emotive eyes" },
-    { title: "Manga Horror Ink Style", text: "Manga Horror Ink Style – Dense blacks, unsettling line detail and claustrophobic eerie framing" },
-    { title: "Anime Cel Animation Style", text: "Anime Cel Animation Style – Clean contour, flat shadow bands, painted backgrounds and cel-like colour" },
-    { title: "Limited TV Animation Style", text: "Limited TV Animation Style – Held poses, simplified movement, bold flat shapes and clever staging" },
-    { title: "Impasto Oil Paint Style", text: "Impasto Oil Paint Style – Thick ridged paint, palette-knife texture and raised painterly surface" },
-    { title: "Fresco Mural Painting", text: "Fresco Mural Painting – Matte plaster wall texture, monumental composition and weathered pigments" },
-    { title: "Egg Tempera Panel Style", text: "Egg Tempera Panel Style – Crisp detail, matte pigment and delicate luminous panel-paint finish" },
-    { title: "Airbrush Gradient Poster Style", text: "Airbrush Gradient Poster Style – Soft sprayed gradients, velvety transitions and retro shine" },
-    { title: "Pictorialist Soft-Focus Photography", text: "Pictorialist Soft-Focus Photography – Hazy tonal prints, poetic blur and painterly photographic atmosphere" },
-    { title: "Straight Photography Style", text: "Straight Photography Style – Sharp focus, rigorous composition and clean observational realism" },
-    { title: "Documentary Photography Style", text: "Documentary Photography Style – Candid lived-in realism, available light and social texture" },
-    { title: "New Vision Modernist Photography", text: "New Vision Modernist Photography – Radical angles, close crops, shadows and machine-age geometry" },
-    { title: "High-Fashion Photography Editorial", text: "High-Fashion Photography Editorial – Polished lighting, poses, styling and magazine drama" },
-    { title: "Italian Neorealist Film Look", text: "Italian Neorealist Film Look – Street-location realism, natural light and anti-glamour human texture" },
-    { title: "Technicolor Cinema Look", text: "Technicolor Cinema Look – Saturated classic-studio colour, glossy drama and storybook brightness" },
-    { title: "Giallo Horror Lighting", text: "Giallo Horror Lighting – Lurid red-blue shadows, stylish thriller framing and theatrical dread" },
-    { title: "Pattachitra Folk Painting", text: "Pattachitra Folk Painting – Flat mythic figures, decorative borders and narrative scroll-like detail" },
-    { title: "Kalighat Painting Style", text: "Kalighat Painting Style – Sweeping brush contours, simplified figures and folk-market immediacy" },
-    { title: "Madhubani Painting Style", text: "Madhubani Painting Style – Dense pattern fills, double outlines, folk symbols and vivid flat colour" },
-    { title: "Kantha Embroidery Surface", text: "Kantha Embroidery Surface – Running-stitch texture, quilted cloth and handmade narrative threadwork" },
-    { title: "Batik Wax-Resist Textile", text: "Batik Wax-Resist Textile – Crackled dye patterns, layered cloth colour and organic resist edges" },
-    { title: "Mid-Century Modern Interior Illustration", text: "Mid-Century Modern Interior Illustration – Teak furniture, warm geometry, organic curves and clean domestic design" },
-    { title: "Low-Poly 3D Style", text: "Low-Poly 3D Style – Faceted polygons, simplified geometry and stylised game-ready shapes" },
-    { title: "Cel-Shaded Toon Render", text: "Cel-Shaded Toon Render – 3D forms with flat shadow bands, crisp outlines and comic/game clarity" },
-    { title: "Corporate Memphis Vector Illustration", text: "Corporate Memphis Vector Illustration – Flat pastel people, bendy limbs, friendly abstract office shapes" },
-    { title: "Nostalgic Browser Pet Game Sprite Style", text: "Nostalgic Browser Pet Game Sprite Style – Clean vector-style 2D fantasy-creature sprite art with crisp bold uniform linework, cel-shading, flat vibrant colour, and soft ambient-occlusion shading." }
-  ];
+  const FULL_STYLE_DATABASE = `Graffiti Bubble Letter Art – Colorful, round street text
+Seapunk Aesthetic Style – Aquatic cyber colours, dolphins, shells, early-internet ocean surrealism
+Kintsugi Ceramic Repair Style – Cracked ceramic forms repaired with glowing gold seams
+Flat Vector Avatar Style – Clean, graphic-style character art
+Needle-Felted Wool Sculpture Style – Fuzzy handmade figures with soft sculpted texture
+Soda Can Label Style – Bright commercial packaging with mascot, bubbles, and product typography
+8-Bit Pixel Art – Old-school, blocky pixel graphics
+Windows Aero Glass Aesthetic
+Ethereal Foggy Landscape – Soft light with misty textures
+Chibi / Kawaii Style – Cute anime-inspired design
+Manga Cover (Generic, Safe Style) – Framed, energetic character
+Haunted House Silhouette Scene – Dark shadows and spook
+Isometric Cityscape – 3D-looking top-down digital art
+Animation Background Painting Style – Painted scenic backdrop, designed for characters to move through
+Album Art Psychedelia (1970s) – Wild swirls and textures
+Dusty Vintage Postcard Look – Faded color with handwritten font
+Digital Marker Rendering – Smooth, vibrant digital color
+Expressionist Painting – Bold, emotional brushstrokes
+Tilt-Shift Photography Style – Real scene made to resemble a scale model
+Enamel Pin Design Style – Simplified shiny shapes with metal outlines and merch-ready clarity
+Nautical Chart Style – Sea routes, compass roses, coastlines, mapmaker lettering
+Scrapbook Family Album Look – Mixed paper textures and frames
+Grunge Album Cover Style – Scratched, moody artwork
+Mid-Century Modern Abstract Art – Flat, funky shapes
+1920s Silent Film Poster Style – Grainy vintage drama
+Layered Mixed Media Brush Art – Paint, ink, texture all-in-one
+Mosaic Tile Artwork – Tiled fragments forming a picture
+Macramé Wall Hanging Style – Knotted cord patterns forming decorative shapes
+Risograph Print Style – Grainy layered ink, limited colours, zine-adjacent charm
+Stencil Art Style – Flat, spray stencil silhouettes
+Glam Magazine Cover – Glossy, posed shot with magazine text
+Russian Lubok Print Style – Folk print narrative scenes with bold outlines and captions
+Bokeh Photography-Inspired Art – Blurry light spots for dreamy focus
+Old-School Tattoo Flash Sheet – Classic tattoo style layout
+Sneaker Design Sheet Style – Footwear concept art with side views, callouts, and material swatches
+Etching Plate Illustration Style – Fine engraved lines, antique printmaking detail
+Pop Art – Repeating images with loud colors
+Clay Tablet Cuneiform Style – Pressed wedge marks, ancient record-keeping, baked clay texture
+ASCII Art Style – Image built entirely from typed characters and spacing
+Synthwave Neon Dream – Glowing pinks, blues, 80s vibes
+Dark Academia Notebook Style – Ink notes, old books, diagrams, candlelit study atmosphere
+Ink Drip Abstract – Spilled ink forming surreal shapes
+Microscope Slide Illustration Style – Cellular forms, transparent layers, lab-note precision
+Cut Paper Collage – Textured and layered shapes
+Hergé-Inspired Ligne Claire Style – Clean European adventure-comic linework with crisp colour fields
+Sports Mascot Logo Style – Fierce emblem character with bold team branding
+Ink Tattoo Sleeve Art Style – Detailed black line sleeve design
+Fabric Patchwork Style – Quilt-like colorful panels
+Korean Minhwa Folk Painting Style – Playful tigers, flowers, books, and symbolic flat colour
+Aztec Codex Inspired Style – Folded-manuscript look with pictographic symbols and bold flat colour
+Art Brut / Outsider Art Vibe – Raw, chaotic, expressive
+Animated Character Turnaround Sheet – 360 design of a character
+Futurist Motion Painting Style – Speed, machines, repeated forms, movement fractured into shapes
+Candle-Lit Renaissance Portrait – Soft shadow, oil-style painting
+LEGO Minifigure Version – Blocky characters in LEGO style
+Papel Picado Cutout Style – Festive pierced-paper banners with decorative negative space
+Astronomical Observatory Plate Style – Star maps, telescope notes, constellation markings
+Analog VHS Screenshot – Grainy retro screen image
+Shimmering Digital Fantasy Armor – Glowy RPG character gear
+Old Pub Sign Painting Style – Hand-painted signboard look with bold emblematic imagery
+Brutalist Art Style – Stark, bold, minimal structure
+Black-Figure Greek Vase Style – Terracotta pottery figures with black silhouette decoration
+Pulp Horror Paperback Style – Painted monsters, lurid shadows, old book-cover drama
+Astrology Chart Illustration – Planets and symbols in rings
+Vaporpunk Street Scene – Neon-meets-grunge future city
+Kandinsky-Inspired Abstract Style – Musical geometry, floating circles, energetic colour rhythm
+Cottagecore Garden Illustration Style – Soft rural garden scenes, handmade objects, cosy plant abundance
+Transit Map Style – Coloured route lines, station dots, clean schematic geography
+Neon Sign Design Style – Tubes of glowing lettering and simple icon shapes
+Porcelain Figurine Style – Glossy collectible sculpture look with delicate painted details
+Desert Punk / Post-Apocalyptic – Grungy, dystopian survival look
+Medieval Marginalia Creature Style – Odd little manuscript beasts doing ridiculous border activities
+Zine-Style Punk Poster – Ripped collage with text
+Esports Team Emblem Style – Aggressive logo mark with sharp digital shapes and gamer branding
+Satellite Thermal Imaging Style – False-colour Earth-view imagery with scientific data overlays
+Museum Exhibit Plaque Style – Artifact image with accession labels, captions, and archival polish
+Surreal Collage Montage – Random images blended weirdly
+Spreadsheet Art Style – Cells, grids, conditional formatting, office-software visual wizardry
+Illustrated Event Flyer Design – Bold lines and party energy
+Faux-Stained Glass Design – Color-segmented leaded look
+Cinematic Storyboard Style – Sequential sketch frames with camera notes and motion arrows
+Hyperreal Pencil Drawing – Extremely detailed shading
+Soft Pastel Landscape – Powdery textures, light color
+Gouache Children’s Book Illustration – Soft, colorful storytelling art
+16-Bit Retro Game Style – Smooth pixel graphics with more detail
+De Stijl Grid Style – Primary-colour rectangles, black grid lines, strict visual order
+Magazine Mockup with Clean Grid – Editorial layout with text
+Studio Ghibli-inspired Illustration – Soft, dreamy hand-drawn anime style
+Retro 70s Infographic Style – Muted colors, funky graphs
+Rubber Stamp Print Style – Repeated stamped shapes, uneven ink, crafty handmade look
+Vintage Children's Storybook – Old-timey, warm illustrations
+Pinball Backglass Art Style – Glossy arcade illustration, chrome highlights, dramatic characters and lights
+Screenprinted Gig Poster Style – Bold layered inks, concert-poster energy, rough registration edges
+Comic Book Style (Generic) – Bold ink lines and halftones
+Biopunk Lab Specimen Style – Organic science-fiction forms, tanks, membranes, strange biology
+Mary Blair-Inspired Color Storyboard Style – Bold colour blocks, playful shape language, whimsical staging
+Klimt-Inspired Gold Ornament Style – Pattern-heavy figures with gilded surfaces and decorative detail
+Islamic Geometric Illumination Style – Intricate repeating geometry with ornamental symmetry
+Daguerreotype Portrait Style – Highly polished antique photo surface with formal stillness
+Monochrome Silhouette Art – One-color figure outlines
+Bubblegum Card Illustration Style – Collectible card framing, printed texture, punchy character art
+Digital Claymation Toy World – 3D toylike fantasy setting
+Colored Pencil Sketch on Kraft Paper – Warm paper, soft color lines
+Lithograph Advertising Style – Soft old-commercial print texture with elegant illustrated products
+Lofi Anime Vibe – Soft grain, chill background
+Cyanotype Sun Print Style – Deep blue photographic silhouettes with botanical or object outlines
+Airline Safety Card Style – Calm instructional figures, simplified emergency diagrams
+Double Exposure Portrait Style – Face blended with landscape, architecture, or symbolic imagery
+Gothic Victorian – Dark, ornate historical style
+Saul Bass-Inspired Title Card Style – Cutout shapes, bold silhouettes, dramatic film-poster minimalism
+Celtic Knotwork Manuscript Style – Interlaced knots, decorative beasts, dense border ornament
+Anita Jeram-inspired Watercolour Book Illustration
+Byzantine Icon-Inspired Style – Frontal figures, gold fields, solemn sacred geometry
+Crochet Amigurumi Style – Yarn-crafted character look with rounded stitched forms
+Hilma af Klint-Inspired Spiritual Geometry Style – Mystical diagrams, botanical symbols, luminous abstraction
+Wet Plate Collodion Photo Style – Antique portrait look with silver tones, blur, and plate flaws
+Fantasy Creature Bestiary Page – Creature with lore and stats
+Blurred Motion Photo Illustration – Speed lines, movement blur
+Restaurant Menu Illustration Style – Drawn dishes, decorative borders, specials-board charm
+Persian Miniature-Inspired Style – Fine detail, elegant gardens, patterned textiles, jewel-box composition
+Matchbox Label Illustration Style – Compact retro labels with bold borders and punchy mascots
+Art Nouveau Poster – Ornate, floral, flowing lines
+Eyvind Earle-Inspired Landscape Style – Decorative forests, graphic shadows, elegant patterned scenery
+Light Painting Photography Style – Long-exposure glowing trails drawn through darkness
+Fantasy RPG Adventure Cover – Epic game-style character poster
+Custom Board Game Cover Style – Bright, box-style artwork
+Fantasy Book Cover (90s style) – Over-the-top RPG book design
+Zen Ink Brush Painting – Minimalist East Asian brush style
+Pastel Vaporwave Landscape – Dreamy pastel digital setting
+Mosaic Portrait Style – Tiles form a large face
+Acrylic Paint Chunky Texture Style – Thick painted effect
+Cosmic Tarot Reading Scene – Mystic glow with starlight
+Heraldic Coat-of-Arms Style – Shields, banners, symbolic animals, formal crest composition
+Glitch Art / Datamosh Effect – Broken TV or digital image
+Stylized Folk Costume Drawing – Traditional outfits as fashion
+Mayan Stela Carving Style – Stone-carved glyphs, ritual figures, weathered relief texture
+Oil Pastel Drawing – Chunky, colorful texture
+Patent Drawing Style – Precise object views, numbered labels, white-background invention diagrams
+Sticker Bomb Collage Style – Overlapping decals, bold icons, streetwear notebook chaos
+Mosaic Icon Style – Religious-icon composition made from glass tesserae and gold backgrounds
+Architectural Blueprint Style – Technical line drawings
+Petroglyph Rock Art Style – Scratched symbols and figures carved into weathered stone
+Chalkboard Illustration Style – White on black textured design
+Steampunk Style – Gear-heavy art
+Carnival Sideshow Banner Style – Hand-painted attractions, loud lettering, theatrical fairground exaggeration
+Folk Art Primitive – Naive, bold and colorful art
+Linocut Poster Style – Carved block-print shapes with chunky contrast and handmade edges
+Fantasy Crystal Cavern Scene – Glowing gems and magical rocks
+Minimalist Flat Design – Simple shapes with bright color
+Dada Photomontage Style – Cut-up photographs, absurd juxtapositions, chaotic printed fragments
+Impressionist Oil Painting – Brushy, light-filled traditional art
+Retro-Futurist Transport Poster – Jetsons-style travel promo
+Claymation / Stop-Motion Look – Textured, chunky 3D figures
+Doodle Sketchbook Style – Casual, fun pen drawings
+Op Art Optical Illusion Style – High-contrast patterns that wobble, pulse, and trick the eye
+Generative Plotter Art Style – Algorithmic pen lines, mathematical curves, clean plotted patterns
+Playing Card Court Style – Symmetrical royal character design with ornate suits and borders
+Vaporwave Aesthetic – Neon, retro, digital surrealism
+Technical Cutaway Diagram Style – Object sliced open to reveal labelled interior mechanisms
+Cereal Box Mascot Style – Breakfast-box character design with bold shelf-friendly graphics
+X-Ray Illustration Style – Translucent anatomy-like forms with glowing internal structure
+Embossed Leather Book Cover – Textured antique-style book
+Cave Painting Inspired Style – Earth pigments, hand marks, animal silhouettes, rough rock texture
+Illustrated Recipe Card Layout – Drawn food and steps
+Weather Radar Map Style – Storm bands, heat colours, broadcast-map visual language
+Minimalist Contour Drawing – Line-only facial outlines
+De Chirico-Inspired Metaphysical Plaza Style – Empty dreamlike squares, long shadows, eerie architecture
+Architectural Watercolor Rendering – Buildings with painterly texture
+Charley Harper-Inspired Geometric Nature Style – Birds, animals, and plants reduced to clever crisp shapes
+UPA-Inspired Cartoon Style – Angular mid-century animation look with flat shapes and clever staging
+Indian Pichwai-Inspired Style – Ornate devotional textile composition with cows, lotuses, and rich pattern
+Ancient Scroll Ink Drawing – Aged parchment look
+Storybook Fantasy Map (Game Style) – Drawn maps of lands
+Cyberpunk Graffiti Alley – Blade Runner with spray cans
+Emergency Instruction Pictogram Style – Simplified safety diagrams with direct action poses
+Flat Infographic Character Profile – Clean data-style person summary
+Album Cover (Indie Rock Aesthetic) – Artistic, grainy image
+Pixar-style 3D Render – 3D cartoon look with expressive faces
+Retro Airline Poster – Mid-century travel poster
+Antique Anatomical Plate Style – Medical textbook figure drawing with labelled body structures
+Crosshatch Pen Illustration – Layered ink shading lines
+Light and Shadow Realism – Contrasty photo-real art
+Lowbrow Pop Surrealism Style – Weird cute-grotesque characters, glossy colour, underground art energy
+Suprematist Geometric Style – Floating abstract forms with stark, theatrical simplicity
+Ukiyo-e Japanese Woodblock Print – Traditional Japanese print style
+Neo-Memphis Design – Geometric, colorful pop elements
+Fractal Flame Art Style – Recursive glowing forms, mathematical curls, cosmic abstraction
+Trading Card Game Illustration Style – Dynamic fantasy action framed like a collectible card
+Pastel Art Nouveau Cartoon
+Wax Seal Emblem Style – Raised seal design, heraldic shapes, stamped ceremonial finish
+Hand-Stitched Embroidery Look – Thread-like detail and charm
+Macabre Victorian Mourning Portrait – Creepy antique vibe
+Nature Journal Sketch Style – Field notes and drawn observations
+Y2K Chrome Aesthetic – Shiny, futuristic early-2000s style
+Street Art / Graffiti Mural – Urban spray-paint aesthetic
+Spiritual Mandala Design – Intricate symmetrical symbols
+Vector Art Deco Style – Sharp lines and elegant shapes
+Holographic Foil Sticker Style – Rainbow sheen, glossy highlights, sticker-sheet sparkle
+Cyberdelic Rave Flyer Style – Club-poster chaos, chrome type, acid colour, digital hallucination
+Art Deco Glam – Geometric, gold-accented vintage style
+Cubist Geometric Figure Art
+Neumorphism UI Style – Soft raised interface panels, subtle shadows, pillowy digital controls
+Origami Folded Paper Style – Sharp paper folds creating animals, objects, or scenes
+Micro-Detail Insect Illustration – Scientific-level bug art
+Egyptian Tomb Painting Inspired Style – Profile figures, symbolic scale, flat ceremonial colour
+Wayfinding Signage Style – Public-information icons, arrows, colour-coded navigation
+Vaporwave Classical Bust Collage – Retro remix of statues
+Dreamcore Visual Style – Hazy, nostalgic, slightly eerie scenes
+Botanical Garden Plate Illustration – Scientific flower drawing
+Charcoal Portrait Sketch – Smudgy, expressive black drawing
+Watercolor Portrait – Gentle, flowing paint portrait
+Bauhaus Graphic Poster – Simple, geometric modernism
+Fantasy Fairy Tale Illustration – Dreamy, storybook-like visuals
+Ex Libris Bookplate Style – Elegant personal library label with symbolic borders and initials
+Grainy Film Snapshot – Old camera aesthetic
+Model Kit Box Art Style – Exploded action scenes, detailed machines, hobby-shop packaging drama
+Cloudcore Aesthetic – Soft dreamy floating cloud visuals
+Vintage Travel Poster – Retro print with bold fonts and colors
+Moebius-Inspired Sci-Fi Line Art Style – Intricate surreal science-fiction worlds with delicate ink detail
+Infrared Photography Style – Pale foliage, dark skies, uncanny photographic colour shifts
+Whimsical Miniature Diorama – Tiny world built with detail
+Noir Detective Poster – Moody, shadow-heavy mystery tone
+Expressionist Face Study – Distorted faces with emotion
+Scrimshaw Engraving Style – Fine nautical line art etched into ivory-like material
+Topographic Map Art – Layered elevation look
+Fantasy Potion Label Design – Drawn bottle and label artwork
+Thermographic Heatmap Style – Heat-camera colours showing temperature-like gradients
+Typographic Poster Art – Words as bold design elements
+Solarpunk Botanical City Style – Green architecture, sunlight, community tech, abundant plant life
+Comic Strip Newspaper Panel – Multi-frame humor scene
+Quilling Paper Filigree Style – Rolled paper curls forming ornate dimensional designs
+Cassette Futurism Interface Style – Clunky retro tech panels, tapes, buttons, beige-machine nostalgia
+Mughal Miniature-Inspired Style – Courtly figures, detailed architecture, refined pattern and colour
+Toile de Jouy Fabric Print Style – Single-colour pastoral scenes repeated across fabric
+Macro Photography Inspired Style – Extreme close-up detail with shallow focus and texture drama
+Whimsical Platformer Game Style – Colorful video game level world
+Retro Polaroid Frame Art – Soft tone inside instant photo frame
+Cinematic Film Still (Generic) – Movie scene look with lighting
+Alebrije Sculpture Style – Fantastical animals covered in vivid decorative patterns
+Norse Rune Stone Style – Carved serpentine patterns, runic bands, weathered stone surface
+Marquetry Wood Inlay Style – Image built from polished wood-grain shapes and tonal inlays
+Monoline Icon Illustration – Single line vector symbols
+Newspaper Comic Puzzle Page – Humorous black-and-white filler style
+Letterpress Broadside Style – Pressed ink, vintage type, handmade print texture
+Ink & Wash Drawing – Loose ink line and watercolor
+Expressionist Woodcut Print – Rough carving-inspired lines
+Pulp Adventure Magazine Style – Daring poses, dramatic skies, treasure-map danger and action
+Peanuts-style Cartoon – Simple, bold lines with quirky expressions
+Psychedelic 60s Poster Art – Swirly, vibrant, retro visuals
+Vapor Trails and Neon Skies – Futuristic speed and light scenery
+Ottoman Tile Pattern Style – Floral ceramics, cobalt blues, repeating decorative motifs
+Bold Flat Pop-Illustration – Solid colors and big shapes
+Retro Sci-Fi Poster – 1950s-style futuristic theme
+Majolica Ceramic Style – Bright glazed pottery patterns with raised decorative colour
+Digital Papercut / Layered Design – Paper texture and depth
+Celestial Navigation Chart Style – Nautical-sky diagram with stars, bearings, and plotted arcs
+Mixed-Media Scrapbook Style – Layered paper, tape, texture
+Augmented Reality Hologram Style – Digital overlays and glowing effects
+Animated Avatar Style (Generic) – Cartoony and modern
+Minimal Portrait on Color Block Background – Simple face, bold backdrop
+Medieval Illuminated Manuscript Style – Gold borders, ornate initials, sacred-book decoration
+Retro PC Game Box Art – Old-style video game packaging
+Digital Spray Paint Texture Art – Layered digital street art
+Fantasy Tarot Card Illustration – Mystic characters in frames
+Constructivist Poster Style – Red-black geometry, heroic angles, punchy propaganda-poster drama
+Toy Blister Pack Style – Character shown as a packaged collectible with accessories and card backing
+Inkblot Rorschach Abstract – Symmetrical ink pattern
+Surrealist Dreamscape – Weird, dreamlike visuals
+Cross-Stitch Pattern Style – Pixel-like thread squares, craft grid, sampler feel
+Rubber Hose Animation Style – 1930s cartoon limbs, bendy poses, theatrical expressions
+Kirigami Pop-Up Card Style – Folded paper engineering with cut shapes rising from the page
+High-Fashion Editorial Sketch – Stylized fashion illustration
+Pastel Illustration (Soft, Whimsical) – Gentle colors and soft lines
+Swiss International Typographic Style – Clean grids, sans-serif type, disciplined modern layout
+Old Newspaper Print Style – Faded halftone black and white
+Mid-2000s DeviantArt Vibe – Dramatic fan-style digital art
+Talavera Tile Style – Hand-painted ceramic tile motifs with bold borders and colour
+Mexican Retablo-Inspired Style – Small devotional painting format with folk figures and handwritten captions
+Backlit Shadow Silhouettes – Figures with light behind
+Delft Blue Ceramic Style – Blue-and-white painted pottery scenes with crisp decorative borders
+Early Renaissance Panel Style – Tempera clarity, balanced perspective, calm architectural staging
+Baroque Chiaroscuro Drama – Theatrical light, deep shadows, sweeping drapery, opulent intensity
+Rococo Pastel Ornament Style – Airy shell curves, gilded flourishes, soft luxury and playful elegance
+Neoclassical Marble Heroic Style – Balanced antique composition, sculptural figures, columns and cool restraint
+Romantic Sublime Landscape – Stormy ruins, moonlight, wild nature and brooding emotional scale
+Post-Impressionist Decorative Painting – Bold contour, expressive colour, structured brushwork and patterned forms
+Symbolist Dream Allegory – Mystical figures, moons, masks and decadent dreamlike symbolism
+Fauvist Colour Painting – Wild saturation, bold contours and non-natural expressive colour
+Abstract Expressionist Gesture Painting – Splashes, drips and raw gestural brush energy
+Arts and Crafts Pattern Style – Handcrafted floral repeats, natural ornament and warm material honesty
+Zoological Natural History Plate – Detailed animal studies with labels, specimen poses and scientific precision
+Clinical Medical Diagram Style – Clean anatomical or biological diagramming with labels and instructional clarity
+Editorial Spot Illustration – Conceptual magazine-style metaphor images with clean silhouettes
+Superhero Comic Splash Page – Dynamic foreshortening, dramatic inks, speed lines and punch lighting
+Underground Comix Style – Heavy ink, counterculture cartooning, grotesque satire and rough print attitude
+Shōjo Manga Romance Style – Sparkles, floral overlays, airy hair, soft framing and emotive eyes
+Manga Horror Ink Style – Dense blacks, unsettling line detail and claustrophobic eerie framing
+Anime Cel Animation Style – Clean contour, flat shadow bands, painted backgrounds and cel-like colour
+Limited TV Animation Style – Held poses, simplified movement, bold flat shapes and clever staging
+Impasto Oil Paint Style – Thick ridged paint, palette-knife texture and raised painterly surface
+Fresco Mural Painting – Matte plaster wall texture, monumental composition and weathered pigments
+Egg Tempera Panel Style – Crisp detail, matte pigment and delicate luminous panel-paint finish
+Airbrush Gradient Poster Style – Soft sprayed gradients, velvety transitions and retro shine
+Pictorialist Soft-Focus Photography – Hazy tonal prints, poetic blur and painterly photographic atmosphere
+Straight Photography Style – Sharp focus, rigorous composition and clean observational realism
+Documentary Photography Style – Candid lived-in realism, available light and social texture
+New Vision Modernist Photography – Radical angles, close crops, shadows and machine-age geometry
+High-Fashion Photography Editorial – Polished lighting, poses, styling and magazine drama
+Italian Neorealist Film Look – Street-location realism, natural light and anti-glamour human texture
+Technicolor Cinema Look – Saturated classic-studio colour, glossy drama and storybook brightness
+Giallo Horror Lighting – Lurid red-blue shadows, stylish thriller framing and theatrical dread
+Pattachitra Folk Painting – Flat mythic figures, decorative borders and narrative scroll-like detail
+Kalighat Painting Style – Sweeping brush contours, simplified figures and folk-market immediacy
+Madhubani Painting Style – Dense pattern fills, double outlines, folk symbols and vivid flat colour
+Kantha Embroidery Surface – Running-stitch texture, quilted cloth and handmade narrative threadwork
+Batik Wax-Resist Textile – Crackled dye patterns, layered cloth colour and organic resist edges
+Mid-Century Modern Interior Illustration – Teak furniture, warm geometry, organic curves and clean domestic design
+Low-Poly 3D Style – Faceted polygons, simplified geometry and stylised game-ready shapes
+Cel-Shaded Toon Render – 3D forms with flat shadow bands, crisp outlines and comic/game clarity
+Corporate Memphis Vector Illustration – Flat pastel people, bendy limbs, friendly abstract office shapes
+Nostalgic Browser Pet Game Sprite Style – Clean vector-style 2D fantasy-creature sprite art with crisp bold uniform linework, cel-shading, flat vibrant colour, and soft ambient-occlusion shading.`.trim().split("\n").map(style => style.trim()).filter(Boolean);
 
-  const normaliseForMatch = value => value.toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/[“”]/g, '"').replace(/[^a-z0-9]+/g, " ").trim();
+  STYLES.splice(0, STYLES.length, ...FULL_STYLE_DATABASE);
 
-  const upsertStyle = ({ title, text, aliases = [] }) => {
-    const terms = [title, ...aliases].map(normaliseForMatch).filter(Boolean);
-    const index = STYLES.findIndex(style => {
-      const candidate = normaliseForMatch(style);
-      return terms.some(term => candidate === term || candidate.startsWith(term + " "));
-    });
-
-    if (index >= 0) STYLES[index] = text;
-    else STYLES.push(text);
-  };
-
-  STYLE_UPDATES.forEach(upsertStyle);
-
-  const seenStyles = new Set();
-  for (let index = 0; index < STYLES.length; index += 1) {
-    const key = normaliseForMatch(STYLES[index]);
-    if (seenStyles.has(key)) {
-      STYLES.splice(index, 1);
-      index -= 1;
-    } else {
-      seenStyles.add(key);
-    }
+  function uniqueStylePool(source) {
+    return [...new Set(source)];
   }
-
-  const explicitTitleOverrides = [
-    ...STYLE_UPDATES.map(update => update.title),
-    "Album Art Psychedelia (1970s)",
-    "Album Cover (Indie Rock Aesthetic)",
-    "Art Brut / Outsider Art Vibe",
-    "Comic Book Style (Generic)",
-    "Fantasy Book Cover (90s style)",
-    "Folk Art Primitive",
-    "Inkblot Rorschach Abstract",
-    "Light and Shadow Realism",
-    "Manga Cover (Generic, Safe Style)",
-    "Pastel Illustration (Soft, Whimsical)"
-  ].sort((a, b) => b.length - a.length);
-
-  const noSeparatorTitles = new Set([
-    "Anita Jeram-inspired Watercolour Book Illustration",
-    "Cubist Geometric Figure Art",
-    "Pastel Art Nouveau Cartoon",
-    "Windows Aero Glass Aesthetic"
-  ]);
-
-  const titleEndTerms = [
-    "Flash Sheet", "Film Look", "Cinema Look", "Game Style", "Book Cover", "Puzzle Page",
-    "Art", "Aesthetic", "Animation", "Avatar", "Broadside", "Card", "Chart", "Collage", "Cover", "Design", "Diagram", "Drawing", "Editorial", "Emblem", "Illustration", "Landscape", "Layout", "Lighting", "Look", "Map", "Montage", "Mural", "Page", "Painting", "Photography", "Pictogram", "Plate", "Poster", "Print", "Profile", "Realism", "Render", "Rendering", "Scene", "Sculpture", "Sheet", "Signage", "Sketch", "Snapshot", "Style", "Surface", "Textile", "Texture", "Vibe", "World"
-  ].sort((a, b) => b.length - a.length);
-
-  const escapeRegExp = value => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-
-  function addDescriptionSeparator(style) {
-    const cleaned = style.replace(/\s+/g, " ").trim();
-    if (!cleaned || cleaned.includes(" – ") || noSeparatorTitles.has(cleaned)) return cleaned;
-
-    const explicitTitle = explicitTitleOverrides.find(title => cleaned.startsWith(title + " "));
-    if (explicitTitle) return `${explicitTitle} – ${cleaned.slice(explicitTitle.length).trim()}`;
-
-    let splitAt = -1;
-    for (const term of titleEndTerms) {
-      const pattern = new RegExp(`\\b${escapeRegExp(term)}\\b(?: \\([^)]*\\))?`, "gi");
-      let match;
-      while ((match = pattern.exec(cleaned))) {
-        const candidateEnd = match.index + match[0].length;
-        if (candidateEnd < cleaned.length && candidateEnd > splitAt) splitAt = candidateEnd;
-      }
-    }
-
-    if (splitAt <= 0 || splitAt >= cleaned.length) return cleaned;
-
-    const title = cleaned.slice(0, splitAt).trim();
-    const description = cleaned.slice(splitAt).trim();
-    if (!title || !description) return cleaned;
-    return `${title} – ${description}`;
-  }
-
-  STYLES.splice(0, STYLES.length, ...STYLES.map(addDescriptionSeparator));
 
   function replaceArrayContents(target, source) {
-    target.splice(0, target.length, ...uniquePool(source));
+    target.splice(0, target.length, ...uniqueStylePool(source));
   }
 
   const moonlitPattern = /Kintsugi|Aero|Foggy|Renaissance|Astronomical|Astrology|Byzantine|Persian|Nouveau|Vaporwave|Tarot|Mosaic|Crystal|Mandala|Holographic|Art Deco|Potion|Quilling|Mughal|Ottoman|Papercut|Celestial|Glass|Illumination|Painting|Porcelain|Tile|Marquetry|Majolica|Botanical|Baroque|Rococo|Romantic|Symbolist|Tempera|Fresco|Giallo|Ornament|Drama/i;
