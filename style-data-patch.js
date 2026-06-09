@@ -8,6 +8,8 @@
     { title: "Pastel Art Nouveau cartoon", text: "Pastel Art Nouveau Cartoon" },
     { title: "Cubist Geometric figure art", text: "Cubist Geometric Figure Art" },
     { title: "Steampunk Style", text: "Steampunk Style – Gear-heavy art" },
+    { title: "Chibi / Kawaii Style", text: "Chibi / Kawaii Style – Cute anime-inspired design" },
+    { title: "Mosaic Portrait Style", text: "Mosaic Portrait Style – Tiles form a large face" },
     { title: "Gothic Victorian", text: "Gothic Victorian – Dark, ornate historical style", aliases: ["Gothic"] },
     { title: "Whimsical Miniature Diorama", text: "Whimsical Miniature Diorama – Tiny world built with detail" },
     { title: "Macabre Victorian Mourning Portrait", text: "Macabre Victorian Mourning Portrait – Creepy antique vibe", aliases: ["Macabre Mourning Portrait"] },
