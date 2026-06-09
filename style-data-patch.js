@@ -3,6 +3,11 @@
   window.__styleComboDataPatchInstalled = true;
 
   const STYLE_UPDATES = [
+    { title: "Layered Mixed Media Brush Art", text: "Layered Mixed Media Brush Art – Paint, ink, texture all-in-one" },
+    { title: "Anita Jeram-inspired watercolour book illustration", text: "Anita Jeram-inspired Watercolour Book Illustration" },
+    { title: "Pastel Art Nouveau cartoon", text: "Pastel Art Nouveau Cartoon" },
+    { title: "Cubist Geometric figure art", text: "Cubist Geometric Figure Art" },
+    { title: "Steampunk Style", text: "Steampunk Style – Gear-heavy art" },
     { title: "Gothic Victorian", text: "Gothic Victorian – Dark, ornate historical style", aliases: ["Gothic"] },
     { title: "Whimsical Miniature Diorama", text: "Whimsical Miniature Diorama – Tiny world built with detail" },
     { title: "Macabre Victorian Mourning Portrait", text: "Macabre Victorian Mourning Portrait – Creepy antique vibe", aliases: ["Macabre Mourning Portrait"] },
@@ -92,7 +97,9 @@
   ].sort((a, b) => b.length - a.length);
 
   const noSeparatorTitles = new Set([
-    "Pastel Art Nouveau cartoon",
+    "Anita Jeram-inspired Watercolour Book Illustration",
+    "Cubist Geometric Figure Art",
+    "Pastel Art Nouveau Cartoon",
     "Windows Aero Glass Aesthetic"
   ]);
 
