@@ -84,23 +84,33 @@
 
     const wrap = document.createElement("label");
     wrap.id = "styleNameOnlyToggleWrap";
-    wrap.style.display = "flex";
-    wrap.style.alignItems = "flex-start";
-    wrap.style.gap = "10px";
-    wrap.style.margin = "12px 0";
-    wrap.style.padding = "12px 14px";
-    wrap.style.border = "1px solid rgba(255,255,255,0.16)";
-    wrap.style.borderRadius = "16px";
-    wrap.style.background = "rgba(255,255,255,0.06)";
+    wrap.title = "Hide style descriptions in the combo and copied prompts.";
+    wrap.style.display = "inline-flex";
+    wrap.style.alignItems = "center";
+    wrap.style.gap = "7px";
+    wrap.style.width = "max-content";
+    wrap.style.maxWidth = "100%";
+    wrap.style.margin = "6px 0 10px";
+    wrap.style.padding = "6px 10px";
+    wrap.style.border = "1px solid rgba(255,255,255,0.14)";
+    wrap.style.borderRadius = "999px";
+    wrap.style.background = "rgba(255,255,255,0.045)";
     wrap.style.cursor = "pointer";
+    wrap.style.userSelect = "none";
+    wrap.style.fontSize = "0.78rem";
+    wrap.style.fontWeight = "750";
+    wrap.style.lineHeight = "1";
 
     styleNameOnlyToggle = document.createElement("input");
     styleNameOnlyToggle.id = "styleNameOnlyToggle";
     styleNameOnlyToggle.type = "checkbox";
-    styleNameOnlyToggle.style.marginTop = "3px";
+    styleNameOnlyToggle.style.width = "14px";
+    styleNameOnlyToggle.style.height = "14px";
+    styleNameOnlyToggle.style.margin = "0";
+    styleNameOnlyToggle.style.flex = "0 0 auto";
 
     const text = document.createElement("span");
-    text.innerHTML = `<strong>Names only</strong><br><small>Hide style descriptions in the combo and copied prompts, e.g. “Pop Art” instead of “Pop Art – Repeating images with loud colours”.</small>`;
+    text.textContent = "Names Only";
 
     wrap.append(styleNameOnlyToggle, text);
     parent.insertBefore(wrap, anchor);
