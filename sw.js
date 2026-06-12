@@ -1,4 +1,4 @@
-const CACHE_NAME = "style-combo-generator-pwa-v13";
+const CACHE_NAME = "style-combo-generator-pwa-v14";
 const APP_SHELL = [
   "./",
   "./index.html",
