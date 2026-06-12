@@ -3,6 +3,96 @@
   window.__styleComboPromptTemplatePatchInstalled = true;
 
   const ABSTRACT_MODE_NAME = "Abstract / Non-Figurative";
+  let styleNameOnlyToggle = null;
+
+  function splitStyleName(style) {
+    return String(style || "").split(/\s+[–—-]\s+/)[0].trim();
+  }
+
+  function styleNamesOnlyActive() {
+    return Boolean(styleNameOnlyToggle && styleNameOnlyToggle.checked);
+  }
+
+  function formatStyleForOutput(style) {
+    const cleaned = stripTrailingStop(style || "");
+    return styleNamesOnlyActive() ? splitStyleName(cleaned) : cleaned;
+  }
+
+  function formattedComboText(slots = currentSlots) {
+    return slots.filter(Boolean).map(formatStyleForOutput).join(" + ");
+  }
+
+  function formattedStyleLines(slots = currentSlots, prefix = "- ") {
+    return slots.filter(Boolean).map(style => `${prefix}${formatStyleForOutput(style)}`).join("\n");
+  }
+
+  function installStyleNameOnlyToggle() {
+    if (document.getElementById("styleNameOnlyToggleWrap")) {
+      styleNameOnlyToggle = document.getElementById("styleNameOnlyToggle");
+      return;
+    }
+
+    const anchor = copyPreviewWrap || document.querySelector(".copy-preview") || document.querySelector(".advanced-grid");
+    const parent = anchor?.parentNode;
+    if (!parent) return;
+
+    const wrap = document.createElement("label");
+    wrap.id = "styleNameOnlyToggleWrap";
+    wrap.style.display = "flex";
+    wrap.style.alignItems = "flex-start";
+    wrap.style.gap = "10px";
+    wrap.style.margin = "12px 0";
+    wrap.style.padding = "12px 14px";
+    wrap.style.border = "1px solid rgba(255,255,255,0.16)";
+    wrap.style.borderRadius = "16px";
+    wrap.style.background = "rgba(255,255,255,0.06)";
+    wrap.style.cursor = "pointer";
+
+    styleNameOnlyToggle = document.createElement("input");
+    styleNameOnlyToggle.id = "styleNameOnlyToggle";
+    styleNameOnlyToggle.type = "checkbox";
+    styleNameOnlyToggle.style.marginTop = "3px";
+
+    const text = document.createElement("span");
+    text.innerHTML = `<strong>Names only</strong><br><small>Hide style descriptions in the combo and copied prompts, e.g. “Pop Art” instead of “Pop Art – Repeating images with loud colours”.</small>`;
+
+    wrap.append(styleNameOnlyToggle, text);
+    parent.insertBefore(wrap, anchor);
+
+    styleNameOnlyToggle.addEventListener("change", () => {
+      renderSlots();
+      refreshCopyPreview();
+    });
+  }
+
+  function patchRenderedOutput() {
+    renderOutput = function() {
+      const filled = currentSlots.filter(Boolean).map(formatStyleForOutput);
+      output.innerHTML = "";
+      if (!filled.length) {
+        output.classList.add("output-empty");
+        output.textContent = "Click Generate to summon the style chimera.";
+        return;
+      }
+      output.classList.remove("output-empty");
+      filled.forEach(style => {
+        const piece = document.createElement("span");
+        piece.className = "combo-piece";
+        piece.textContent = style;
+        output.append(piece);
+      });
+    };
+
+    const originalRenderSlots = renderSlots;
+    renderSlots = function() {
+      originalRenderSlots();
+      if (!styleNamesOnlyActive()) return;
+      document.querySelectorAll(".slot-card").forEach((card, index) => {
+        const text = card.querySelector(".slot-text");
+        if (text && currentSlots[index]) text.textContent = formatStyleForOutput(currentSlots[index]);
+      });
+    };
+  }
 
   function ensurePromptOption(value, label, afterValue = null) {
     if (!copyFormatSelect) return null;
@@ -258,11 +348,11 @@
   }
 
   buildPrompt = function(formatName = copyFormatSelect.value) {
-    const combo = buildComboText();
+    const combo = formattedComboText();
     const anti = ANTI_GREEBLE_MODES[antiGreebleSelect.value] || ANTI_GREEBLE_MODES.off;
     const suffix = anti.suffix.trim();
     const compact = compactCleanupText();
-    const stacked = styleLines();
+    const stacked = formattedStyleLines();
 
     if (!combo) return "";
     if (abstractGuardrailsActive()) return buildAbstractPrompt(formatName, combo, suffix, compact, stacked);
@@ -286,6 +376,8 @@
     refreshCopyPreview();
   };
 
+  installStyleNameOnlyToggle();
+  patchRenderedOutput();
   patchPromptFormatMenu();
   patchAntiGreebleModes();
 
@@ -293,6 +385,7 @@
     antiGreebleSelect.value = "abstract";
   }
 
+  renderSlots();
   updateBadge();
   refreshCopyPreview();
 })();
