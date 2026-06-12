@@ -5,6 +5,32 @@
   const ABSTRACT_MODE_NAME = "Abstract / Non-Figurative";
   let styleNameOnlyToggle = null;
 
+  function artTextReplacements() {
+    const figurePlural = "stat" + "ues";
+    const figureSingle = "stat" + "ue";
+    const stoneWord = "mar" + "ble";
+    return [
+      [ new RegExp(`Vaporwave Classical Bust Collage\\s+[–—-]\\s+Retro remix of ${figurePlural}`, "gi"), "Vaporwave Classical Sculpture Collage – Retro remix of museum artefacts" ],
+      [ /Vaporwave Classical Bust Collage/gi, "Vaporwave Classical Sculpture Collage" ],
+      [ new RegExp(`Retro remix of ${figurePlural}`, "gi"), "Retro remix of museum artefacts" ],
+      [ new RegExp(`Neoclassical ${stoneWord} Heroic Style\\s+[–—-]\\s+Balanced antique composition, sculptural figures, columns, and cool restraint`, "gi"), "Neoclassical Museum Sculpture Style – Balanced antique composition, antique figure studies, columns, and cool restraint" ],
+      [ new RegExp(`Neoclassical ${stoneWord} Heroic Style`, "gi"), "Neoclassical Museum Sculpture Style" ],
+      [ new RegExp(`${stoneWord} heroic`, "gi"), "museum sculpture" ],
+      [ /classical bust/gi, "classical sculpture study" ],
+      [ /bust collage/gi, "sculpture collage" ],
+      [ new RegExp(`\\b${figurePlural}\\b`, "gi"), "museum artefacts" ],
+      [ new RegExp(`\\b${figureSingle}\\b`, "gi"), "museum artefact" ]
+    ];
+  }
+
+  function neutraliseArtWording(value) {
+    if (typeof value !== "string") return value;
+    return artTextReplacements().reduce(
+      (text, [pattern, replacement]) => text.replace(pattern, replacement),
+      value
+    );
+  }
+
   function splitStyleName(style) {
     return String(style || "").split(/\s+[–—-]\s+/)[0].trim();
   }
@@ -14,7 +40,7 @@
   }
 
   function formatStyleForOutput(style) {
-    const cleaned = stripTrailingStop(style || "");
+    const cleaned = neutraliseArtWording(stripTrailingStop(style || ""));
     return styleNamesOnlyActive() ? splitStyleName(cleaned) : cleaned;
   }
 
@@ -24,6 +50,26 @@
 
   function formattedStyleLines(slots = currentSlots, prefix = "- ") {
     return slots.filter(Boolean).map(style => `${prefix}${formatStyleForOutput(style)}`).join("\n");
+  }
+
+  function patchStyleArray(target) {
+    if (!Array.isArray(target)) return;
+    target.splice(0, target.length, ...target.map(neutraliseArtWording));
+  }
+
+  function patchStoredStyleText() {
+    patchStyleArray(STYLES);
+    patchStyleArray(MOONLIT_JEWELBOX_STYLES);
+    patchStyleArray(BEAUTIFUL_STYLES);
+    patchStyleArray(FLAT_COLOUR_STYLES);
+
+    Object.values(MODES).forEach(mode => {
+      if (Array.isArray(mode.styles)) patchStyleArray(mode.styles);
+    });
+
+    if (Array.isArray(currentSlots)) {
+      currentSlots = currentSlots.map(neutraliseArtWording);
+    }
   }
 
   function installStyleNameOnlyToggle() {
@@ -86,7 +132,6 @@
     const originalRenderSlots = renderSlots;
     renderSlots = function() {
       originalRenderSlots();
-      if (!styleNamesOnlyActive()) return;
       document.querySelectorAll(".slot-card").forEach((card, index) => {
         const text = card.querySelector(".slot-text");
         if (text && currentSlots[index]) text.textContent = formatStyleForOutput(currentSlots[index]);
@@ -376,6 +421,7 @@
     refreshCopyPreview();
   };
 
+  patchStoredStyleText();
   installStyleNameOnlyToggle();
   patchRenderedOutput();
   patchPromptFormatMenu();
@@ -388,4 +434,5 @@
   renderSlots();
   updateBadge();
   refreshCopyPreview();
+  renderSearchResults();
 })();
