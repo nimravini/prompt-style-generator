@@ -3,7 +3,76 @@
   window.__styleComboPromptTemplatePatchInstalled = true;
 
   const ABSTRACT_MODE_NAME = "Abstract / Non-Figurative";
+  const CHARACTER_MODE_NAME = "Character Styles / Animation";
   let styleNameOnlyToggle = null;
+
+  const CHARACTER_STYLE_EXPANSION = [
+    "UPA-Inspired Character Design Style – Angular mid-century shapes, limited-animation clarity, bold silhouettes, and clever graphic staging",
+    "Mid-Century Limited Animation Character Style – Flat shapes, economical poses, strong silhouettes, and expressive simplified acting",
+    "Graphic Shape Cartoon Character Design – Characters built from bold circles, triangles, wedges, and clean colour blocks",
+    "Clean Vector Mascot Character Style – Polished brand-ready mascot art with simple shapes, crisp outlines, and friendly proportions",
+    "Rubber-Hose Cartoon Character Style – Bendy limbs, pie-cut eyes, gloved hands, and elastic vintage cartoon motion",
+    "Golden-Age Theatrical Cartoon Look – Squash-and-stretch characters, painted charm, lively expressions, and vintage animation polish",
+    "Saturday Morning Cartoon Character Style – Bright heroic shapes, readable costumes, bold poses, and toyetic charm",
+    "90s Cable Cartoon Character Style – Chunky silhouettes, offbeat expressions, graphic backgrounds, and playful gross-out shape language",
+    "Indie Animation Pilot Character Style – Distinctive silhouettes, expressive faces, clean production-ready design, and bold colour identity",
+    "Webtoon Character Illustration Style – Clean digital figures, expressive faces, dramatic lighting, and scroll-friendly composition",
+    "Shonen Hero Character Design – Dynamic hair shapes, energetic poses, power motifs, and bold youthful costume language",
+    "Shojo Magical-Girl Character Design – Sparkles, ribbon shapes, delicate costume motifs, and elegant transformation energy",
+    "Josei Slice-of-Life Character Style – Stylish adult characters, grounded clothing, soft expressions, and subtle emotional posing",
+    "Seinen Graphic Character Rendering – Mature proportions, sharper shadows, controlled detail, and cinematic character presence",
+    "Kawaii Mascot Character Sheet – Ultra-cute simplified character design with rounded shapes, soft colours, and expression variants",
+    "Chibi Expression Sheet Style – Tiny simplified figures with oversized heads, clear emotions, and sticker-like readability",
+    "Super-Deformed RPG Character Style – Compact adventure characters with readable gear, bold silhouettes, and game-icon charm",
+    "Sticker Mascot Character Design – Die-cut-ready character art with thick outlines, simple poses, and punchy appeal",
+    "Vinyl Designer Toy Character Style – Smooth collectible-toy proportions, simplified features, glossy surfaces, and sculptural charm",
+    "Plush Toy Character Concept – Soft stuffed-animal proportions, seam details, embroidered features, and cuddly silhouette logic",
+    "Felt Craft Creature Character Style – Handmade felt-texture characters with stitched edges, soft forms, and tactile charm",
+    "Paper Doll Character Design – Flat outfit layers, cutout silhouettes, wardrobe swaps, and playful dress-up presentation",
+    "Fashion Doll Concept Art – Stylised figures, dramatic outfits, accessory focus, and polished toy-display presentation",
+    "Character Wardrobe Lineup Style – Multiple outfit variants, consistent silhouette, accessory callouts, and clear design comparison",
+    "Character Turnaround Model Sheet – Front, side, back, and three-quarter views with consistent proportions and production notes",
+    "Character Expression Sheet – Clear facial emotion range, head angles, mouth shapes, and acting reference poses",
+    "Character Pose Sheet – Action poses, idle poses, gesture studies, and readable body-language silhouettes",
+    "Character Prop Sheet – Character-specific items, accessories, tools, and costume details shown as clean production callouts",
+    "Creature Design Lineup – Multiple creature variants with silhouette comparison, anatomy notes, and scale-friendly presentation",
+    "Cozy Creature Companion Style – Appealing animal-like companions with rounded forms, gentle expressions, and soft adventure charm",
+    "Monster Mascot Character Style – Friendly monster design with bold shapes, expressive features, and playful asymmetry",
+    "Kaiju Suit Character Concept – Large monster silhouette, practical-suit texture, bold proportions, and dramatic creature readability",
+    "Dragon Companion Design – Expressive dragon character with readable wings, horns, markings, and personality-driven silhouette",
+    "Fantasy Familiar Character Design – Small magical companion creature with charm, symbolic details, and strong silhouette identity",
+    "Anthropomorphic Animal Character Design – Animal traits blended with expressive humanlike posing, costume, and personality cues",
+    "Furry Character Reference Sheet Style – Clear character markings, front/back views, expression notes, and palette swatches",
+    "Goblin Character Concept Style – Pointy silhouettes, expressive ears, scrappy clothing, and impish creature charm",
+    "Witchy Character Design Sheet – Magical wardrobe, familiar motifs, potion props, and atmospheric character callouts",
+    "Villain Silhouette Character Design – Dramatic shape language, sharp costume cues, and readable menace from outline alone",
+    "Hero Team Lineup Style – Distinct cast silhouettes, varied heights, costume families, and group-composition clarity",
+    "Sidekick Mascot Design – Small companion character built for charm, expressive posing, and instant visual recognition",
+    "NPC Portrait Pack Style – Cohesive character portraits with varied faces, archetypes, clothing, and readable personality",
+    "RPG Character Concept Art – Fantasy or sci-fi character design with gear, silhouette, material notes, and adventure-readiness",
+    "Tactical Sci-Fi Character Concept – Modular armour, practical equipment, clear faction identity, and readable future-tech shapes",
+    "Cyberpunk Character Sheet – Neon-accented clothing, tech implants, attitude-driven posing, and urban character identity",
+    "Solarpunk Character Portrait Style – Warm ecological fashion, plant-tech motifs, optimistic colour, and soft futuristic styling",
+    "Post-Apocalyptic Survivor Character Design – Worn layers, scavenged gear, practical silhouette, and survival-story details",
+    "Retro Platformer Character Sprite – Small readable game character with bold silhouette, limited pixels, and iconic pose language",
+    "Handheld RPG Battle Sprite – Compact character sprite with clear weapon, costume, palette, and turn-based game readability",
+    "Fighting Game Character Select Portrait – Dramatic cropped portrait, strong attitude, costume identity, and arcade intensity",
+    "Visual Novel Character Sprite Style – Clean front-facing character art with outfit variants, expressive faces, and readable staging",
+    "Dating Sim Character Sprite Style – Polished character sprites, appealing outfits, expression changes, and clean romantic-comedy staging",
+    "Cozy Farming Game Character Portrait – Friendly character busts, warm palettes, simple props, and village-life charm",
+    "Board Game Character Card Art – Clear character portrait, readable role iconography, and tabletop-friendly framing",
+    "Tabletop Miniature Concept Art – Character design focused on silhouette, sculptable details, pose clarity, and painted-material notes",
+    "Fantasy Trading Card Character Art – Dramatic character focus, spell-like atmosphere, ornate framing, and collectible-card polish",
+    "Children's Book Animal Character Style – Gentle animal characters with storybook warmth, soft gestures, and expressive faces",
+    "Whimsical Storybook Character Style – Playful figures, cosy clothing, gentle linework, and narrative-friendly charm",
+    "Editorial Cartoon Character Style – Exaggerated likeness-free figures, simple shapes, sharp expressions, and satirical readability",
+    "Newspaper Comic Strip Character Style – Black linework, simple staging, recurring-cast silhouettes, and expressive panel acting",
+    "Graphic Novel Character Inking – Confident ink contours, controlled shadows, readable anatomy, and sequential-art polish",
+    "Character Silhouette Sticker Style – One-colour or two-colour character shapes built for instant recognition and merch use",
+    "Cute Food Mascot Character Style – Snack or ingredient characters with faces, tiny limbs, and cheerful brand-mascot clarity",
+    "Brand Mascot Turnaround Style – Commercial mascot views, simplified proportions, logo-friendly silhouette, and pose variants",
+    "Educational Workbook Character Style – Friendly teaching characters, clear gestures, simple props, and accessible instructional design"
+  ];
 
   function artTextReplacements() {
     const figurePlural = "stat" + "ues";
@@ -52,6 +121,13 @@
     return slots.filter(Boolean).map(style => `${prefix}${formatStyleForOutput(style)}`).join("\n");
   }
 
+  function addUniqueStyles(target, additions) {
+    if (!Array.isArray(target)) return;
+    additions.map(neutraliseArtWording).forEach(style => {
+      if (style && !target.includes(style)) target.push(style);
+    });
+  }
+
   function patchStyleArray(target) {
     if (!Array.isArray(target)) return;
     target.splice(0, target.length, ...target.map(neutraliseArtWording));
@@ -70,6 +146,33 @@
     if (Array.isArray(currentSlots)) {
       currentSlots = currentSlots.map(neutraliseArtWording);
     }
+  }
+
+  function ensureSelectOption(select, value, label, afterValue = null) {
+    if (!select || [...select.options].some(option => option.value === value)) return;
+    const option = document.createElement("option");
+    option.value = value;
+    option.textContent = label;
+    const after = afterValue ? [...select.options].find(existing => existing.value === afterValue) : null;
+    if (after && after.nextSibling) select.insertBefore(option, after.nextSibling);
+    else select.appendChild(option);
+  }
+
+  function patchCharacterStyles() {
+    const characterStyles = CHARACTER_STYLE_EXPANSION.map(neutraliseArtWording);
+    const characterPattern = /UPA|Character|Animation|Cartoon|Mascot|Creature|Anime|Manga|Webtoon|Chibi|Toy|Plush|Felt|Doll|Wardrobe|Turnaround|Expression|Pose|Prop|Monster|Kaiju|Dragon|Familiar|Anthropomorphic|Furry|Goblin|Witchy|Villain|Hero|Sidekick|NPC|RPG|Sci-Fi|Cyberpunk|Solarpunk|Survivor|Sprite|Game|Visual Novel|Dating Sim|Farming Game|Card|Miniature|Storybook|Editorial Cartoon|Comic Strip|Graphic Novel|Sticker|Workbook|Avatar|Amigurumi|Browser Pet|Ligne Claire|Peanuts|Safety Card|Corporate Memphis/i;
+
+    addUniqueStyles(STYLES, characterStyles);
+    addUniqueStyles(BEAUTIFUL_STYLES, characterStyles);
+    addUniqueStyles(FLAT_COLOUR_STYLES, characterStyles);
+
+    const modeStyles = STYLES.filter(style => characterPattern.test(style));
+    MODES[CHARACTER_MODE_NAME] = {
+      type: "manual",
+      styles: modeStyles.length ? modeStyles : characterStyles
+    };
+
+    ensureSelectOption(modeSelect, CHARACTER_MODE_NAME, CHARACTER_MODE_NAME, "Flat Colour / Low-Greeble");
   }
 
   function installStyleNameOnlyToggle() {
@@ -432,6 +535,7 @@
   };
 
   patchStoredStyleText();
+  patchCharacterStyles();
   installStyleNameOnlyToggle();
   patchRenderedOutput();
   patchPromptFormatMenu();
