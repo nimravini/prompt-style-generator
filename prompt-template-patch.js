@@ -15,7 +15,26 @@
     "Golden-Age Theatrical Cartoon Look – Squash-and-stretch characters, painted charm, lively expressions, and vintage animation polish",
     "Saturday Morning Cartoon Character Style – Bright heroic shapes, readable costumes, bold poses, and toyetic charm",
     "90s Cable Cartoon Character Style – Chunky silhouettes, offbeat expressions, graphic backgrounds, and playful gross-out shape language",
-    "Indie Animation Pilot Character Style – Distinctive silhouettes, expressive faces, clean production-ready design, and bold colour identity",
+    "Crunchy YouTube Comedy Pilot Style – Rough digital linework, meme-speed expressions, wonky poses, loud timing, and scrappy internet-cartoon charm",
+    "Soft Fantasy Adventure Pilot Style – Gentle character shapes, warm magical palettes, cosy quest energy, and clean kid-adventure staging",
+    "Queer Horror-Comedy Pilot Style – Campy spooky characters, expressive silhouettes, monster-heart humour, neon gloom, and theatrical emotional chaos",
+    "Faux-2000s Web Animation Style – Flash-era vector shapes, simple rigs, thick outlines, flat colours, and early-internet cartoon attitude",
+    "Ugly-Cute Adult Animation Style – Awkward proportions, deliberately unpretty faces, dry expression work, and offbeat grown-up cartoon humour",
+    "Children's Storybook Pilot Style – Soft shapes, gentle animal or child characters, warm colour, simple staging, and read-aloud narrative charm",
+    "Puppet-Rigged Toon Boom Pilot Style – Clean cutout animation shapes, reusable character parts, crisp mouth shapes, and production-ready rig logic",
+    "Indie Anime-Adjacent Pilot Style – Expressive anime influence, simplified TV-budget shapes, soft lighting, and character-focused emotional staging",
+    "Webcomic-to-Animation Pitch Style – Strong character silhouettes, panel-friendly expressions, bold colour identity, and pitch-deck-ready cast appeal",
+    "Music-Video Experimental Pilot Style – Rhythm-driven visuals, surreal transitions, stylised character motion, bold colour shifts, and animated music-video energy",
+    "Rubbery TVPaint Sketch Animation Style – Loose hand-drawn linework, wobbly charm, expressive smear frames, and sketchy animation-test texture",
+    "Tumblr-Era Character Ensemble Pilot Style – Distinctive cast silhouettes, colourful hair and outfits, expressive found-family energy, and blog-era character appeal",
+    "Cabaret Demon Musical Pilot Style – Sharp theatrical silhouettes, red-black glamour, chaotic musical staging, and flamboyant supernatural showmanship",
+    "Painterly Anthro Period-Piece Pilot Style – Polished animal characters, soft painterly lighting, vintage costume detail, and refined dramatic atmosphere",
+    "Pastel Deadpan Magical Slice-of-Life Pilot Style – Soft candy colours, odd quiet humour, cosy surrealism, and cute characters with strangely flat reactions",
+    "Toybox Nightmare Digital Pilot Style – Bright toy-like characters, carnival colours, uncanny digital spaces, and cheerful horror-comedy contrast",
+    "Scrappy Student Animation Thesis Style – Ambitious character ideas, uneven hand-drawn charm, bold emotional staging, and experimental young-artist energy",
+    "Festival Short Character Animation Style – Expressive minimal designs, art-school colour choices, symbolic staging, and compact emotional storytelling",
+    "Cute-but-Cursed Mascot Pilot Style – Adorable simplified mascots with eerie undertones, bright colours, and unsettling smiley character logic",
+    "Chaotic Musical Character Pitch Style – Big expressions, performance poses, stage-light colour, and character designs built for songs and breakdowns",
     "Webtoon Character Illustration Style – Clean digital figures, expressive faces, dramatic lighting, and scroll-friendly composition",
     "Shonen Hero Character Design – Dynamic hair shapes, energetic poses, power motifs, and bold youthful costume language",
     "Shojo Magical-Girl Character Design – Sparkles, ribbon shapes, delicate costume motifs, and elegant transformation energy",
@@ -160,7 +179,7 @@
 
   function patchCharacterStyles() {
     const characterStyles = CHARACTER_STYLE_EXPANSION.map(neutraliseArtWording);
-    const characterPattern = /UPA|Character|Animation|Cartoon|Mascot|Creature|Anime|Manga|Webtoon|Chibi|Toy|Plush|Felt|Doll|Wardrobe|Turnaround|Expression|Pose|Prop|Monster|Kaiju|Dragon|Familiar|Anthropomorphic|Furry|Goblin|Witchy|Villain|Hero|Sidekick|NPC|RPG|Sci-Fi|Cyberpunk|Solarpunk|Survivor|Sprite|Game|Visual Novel|Dating Sim|Farming Game|Card|Miniature|Storybook|Editorial Cartoon|Comic Strip|Graphic Novel|Sticker|Workbook|Avatar|Amigurumi|Browser Pet|Ligne Claire|Peanuts|Safety Card|Corporate Memphis/i;
+    const characterPattern = /UPA|Pilot|YouTube|Comedy|Fantasy|Horror|Web Animation|Adult Animation|Storybook|Toon Boom|Pitch|Music-Video|TVPaint|Tumblr|Cabaret|Painterly|Anthro|Pastel|Toybox|Thesis|Festival|Cursed|Character|Animation|Cartoon|Mascot|Creature|Anime|Manga|Webtoon|Chibi|Toy|Plush|Felt|Doll|Wardrobe|Turnaround|Expression|Pose|Prop|Monster|Kaiju|Dragon|Familiar|Anthropomorphic|Furry|Goblin|Witchy|Villain|Hero|Sidekick|NPC|RPG|Sci-Fi|Cyberpunk|Solarpunk|Survivor|Sprite|Game|Visual Novel|Dating Sim|Farming Game|Card|Miniature|Editorial Cartoon|Comic Strip|Graphic Novel|Sticker|Workbook|Avatar|Amigurumi|Browser Pet|Ligne Claire|Peanuts|Safety Card|Corporate Memphis/i;
 
     addUniqueStyles(STYLES, characterStyles);
     addUniqueStyles(BEAUTIFUL_STYLES, characterStyles);
