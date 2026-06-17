@@ -1,10 +1,11 @@
-const CACHE_NAME = "style-combo-generator-pwa-v19";
+const CACHE_NAME = "style-combo-generator-pwa-v20";
 const APP_SHELL = [
   "./",
   "./index.html",
   "./pwa.html",
   "./style-data-patch.js",
   "./prompt-template-patch.js",
+  "./result-toolbar-patch.js",
   "./manifest.webmanifest",
   "./icons/style-combo-icon.svg"
 ];
