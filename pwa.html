@@ -10,119 +10,19 @@
   <link rel="icon" href="./icons/style-combo-icon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="./icons/style-combo-icon.svg" />
   <style>
-    :root {
-      color-scheme: dark;
-      --bg: #070612;
-      --panel: rgba(10, 9, 22, 0.86);
-      --text: #fffaf4;
-      --muted: #d9cfe8;
-      --accent-two: #71f6ff;
-      --accent-three: #f9d56e;
-      --border: rgba(255, 255, 255, 0.18);
-    }
-
+    :root { color-scheme: dark; --text: #fffaf4; --muted: #d9cfe8; --panel: rgba(10, 9, 22, 0.86); --border: rgba(255, 255, 255, 0.18); --accent-two: #71f6ff; --accent-three: #f9d56e; }
     * { box-sizing: border-box; }
-
-    html,
-    body {
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      overflow: hidden;
-      background:
-        radial-gradient(900px circle at 8% -10%, rgba(255, 79, 216, 0.34), transparent 58%),
-        radial-gradient(760px circle at 98% 6%, rgba(113, 246, 255, 0.22), transparent 55%),
-        linear-gradient(150deg, #070612, #11142b 48%, #26123a);
-      color: var(--text);
-      font-family: ui-rounded, "SF Pro Rounded", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
-
-    .app-shell {
-      display: grid;
-      grid-template-rows: auto minmax(0, 1fr);
-      width: 100%;
-      height: 100%;
-      height: 100dvh;
-    }
-
-    .install-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: calc(10px + env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) 10px max(12px, env(safe-area-inset-left));
-      border-bottom: 1px solid var(--border);
-      background: var(--panel);
-      backdrop-filter: blur(18px) saturate(1.2);
-      -webkit-backdrop-filter: blur(18px) saturate(1.2);
-      box-shadow: 0 18px 52px rgba(0, 0, 0, 0.32);
-      position: relative;
-      z-index: 10;
-    }
-
-    .title-wrap {
-      display: grid;
-      gap: 2px;
-      min-width: 0;
-    }
-
-    .app-title {
-      margin: 0;
-      font-size: clamp(1rem, 4vw, 1.28rem);
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-      font-weight: 1000;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .app-note {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.78rem;
-      line-height: 1.2;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .install-button {
-      min-height: 42px;
-      border: 1px solid rgba(255, 255, 255, 0.24);
-      border-radius: 999px;
-      padding: 0 16px;
-      color: #10091c;
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.04)),
-        linear-gradient(135deg, var(--accent-two), #affff6 55%, var(--accent-three));
-      font: inherit;
-      font-weight: 1000;
-      cursor: pointer;
-      box-shadow: 0 12px 28px rgba(113, 246, 255, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.5);
-      -webkit-tap-highlight-color: transparent;
-      flex: 0 0 auto;
-    }
-
+    html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; color: var(--text); background: radial-gradient(900px circle at 8% -10%, rgba(255, 79, 216, 0.34), transparent 58%), radial-gradient(760px circle at 98% 6%, rgba(113, 246, 255, 0.22), transparent 55%), linear-gradient(150deg, #070612, #11142b 48%, #26123a); font-family: ui-rounded, "SF Pro Rounded", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .app-shell { display: grid; grid-template-rows: auto minmax(0, 1fr); width: 100%; height: 100dvh; }
+    .install-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: calc(10px + env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) 10px max(12px, env(safe-area-inset-left)); border-bottom: 1px solid var(--border); background: var(--panel); backdrop-filter: blur(18px) saturate(1.2); -webkit-backdrop-filter: blur(18px) saturate(1.2); box-shadow: 0 18px 52px rgba(0, 0, 0, 0.32); position: relative; z-index: 10; }
+    .title-wrap { display: grid; gap: 2px; min-width: 0; }
+    .app-title { margin: 0; font-size: clamp(1rem, 4vw, 1.28rem); line-height: 1.05; letter-spacing: -0.04em; font-weight: 1000; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .app-note { margin: 0; color: var(--muted); font-size: 0.78rem; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .install-button { min-height: 42px; border: 1px solid rgba(255, 255, 255, 0.24); border-radius: 999px; padding: 0 16px; color: #10091c; background: linear-gradient(135deg, var(--accent-two), #affff6 55%, var(--accent-three)); font: inherit; font-weight: 1000; cursor: pointer; box-shadow: 0 12px 28px rgba(113, 246, 255, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.5); }
     .install-button[hidden] { display: none; }
-    .install-button:active { transform: translateY(1px) scale(0.985); }
-
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-      background: #070612;
-    }
-
-    @media (display-mode: standalone) {
-      .install-bar { display: none; }
-      .app-shell { grid-template-rows: minmax(0, 1fr); }
-    }
-
-    @media (max-width: 560px) {
-      .app-note { display: none; }
-      .install-button { min-height: 40px; padding: 0 13px; }
-    }
+    iframe { width: 100%; height: 100%; border: 0; background: #070612; }
+    @media (display-mode: standalone) { .install-bar { display: none; } .app-shell { grid-template-rows: minmax(0, 1fr); } }
+    @media (max-width: 560px) { .app-note { display: none; } .install-button { min-height: 40px; padding: 0 13px; } }
   </style>
 </head>
 <body>
@@ -130,14 +30,12 @@
     <section class="install-bar" aria-label="Install controls">
       <div class="title-wrap">
         <h1 class="app-title">Style Combo Generator</h1>
-        <p id="installStatus" class="app-note">Installable app wrapper loaded. Browser menu also works for “Add to Home Screen”.</p>
+        <p id="installStatus" class="app-note">Installable app wrapper loaded.</p>
       </div>
       <button id="installButton" class="install-button" type="button" hidden>Install app</button>
     </section>
-
     <iframe id="generatorFrame" src="./index.html" title="Style Combo Generator" allow="clipboard-write"></iframe>
   </main>
-
   <script>
     const installButton = document.getElementById("installButton");
     const installStatus = document.getElementById("installStatus");
@@ -147,27 +45,18 @@
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
         navigator.serviceWorker.register("./sw.js").catch(() => {
-          installStatus.textContent = "Service worker registration failed. Browser menu shortcut may still work.";
+          installStatus.textContent = "Service worker registration failed.";
         });
       });
     }
 
-    function injectScript(frameDocument, options) {
+    function injectScript(frameDocument, src) {
       return new Promise((resolve, reject) => {
         const script = frameDocument.createElement("script");
-        if (options.src) {
-          script.src = options.src;
-          script.onload = resolve;
-          script.onerror = reject;
-        } else {
-          script.textContent = options.text;
-          script.onload = resolve;
-        }
+        script.src = src;
+        script.onload = resolve;
+        script.onerror = reject;
         frameDocument.body.appendChild(script);
-        if (!options.src) {
-          script.remove();
-          resolve();
-        }
       });
     }
 
@@ -176,14 +65,14 @@
       const frameDocument = generatorFrame.contentDocument;
       if (!frameWindow || !frameDocument || frameWindow.__styleComboPatchesInstalled) return;
       frameWindow.__styleComboPatchesInstalled = true;
-
-      await injectScript(frameDocument, { src: "./style-data-patch.js" });
-      await injectScript(frameDocument, { src: "./prompt-template-patch.js" });
+      await injectScript(frameDocument, "./style-data-patch.js");
+      await injectScript(frameDocument, "./prompt-template-patch.js");
+      await injectScript(frameDocument, "./result-toolbar-patch.js");
     }
 
     generatorFrame.addEventListener("load", () => {
       installGeneratorPatches().catch(() => {
-        installStatus.textContent = "Style data patch failed to load. Reload the app shell and try again.";
+        installStatus.textContent = "Patch loading failed. Reload the app shell.";
       });
     });
 
@@ -191,26 +80,25 @@
       event.preventDefault();
       deferredInstallPrompt = event;
       installButton.hidden = false;
-      installStatus.textContent = "Install prompt ready. Pocket chimera mode armed.";
+      installStatus.textContent = "Install prompt ready.";
     });
 
     installButton.addEventListener("click", async () => {
       if (!deferredInstallPrompt) {
-        installStatus.textContent = "Use your browser menu and choose Add to Home Screen / Install app.";
+        installStatus.textContent = "Use your browser menu to install the app.";
         return;
       }
-
       deferredInstallPrompt.prompt();
       const choice = await deferredInstallPrompt.userChoice;
       deferredInstallPrompt = null;
       installButton.hidden = true;
-      installStatus.textContent = choice.outcome === "accepted" ? "Installed. The chimera has a front door now." : "Install dismissed. Browser menu still has the shortcut option.";
+      installStatus.textContent = choice.outcome === "accepted" ? "Installed." : "Install dismissed.";
     });
 
     window.addEventListener("appinstalled", () => {
       deferredInstallPrompt = null;
       installButton.hidden = true;
-      installStatus.textContent = "Installed. The chimera has a front door now.";
+      installStatus.textContent = "Installed.";
     });
   </script>
 </body>
