@@ -133,7 +133,7 @@
   }
 
   function formattedComboText(slots = currentSlots) {
-    return slots.filter(Boolean).map(formatStyleForOutput).join(" + ");
+    return slots.filter(Boolean).map(formatStyleForOutput).join(" × ");
   }
 
   function formattedStyleLines(slots = currentSlots, prefix = "- ") {
